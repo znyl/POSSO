@@ -6,13 +6,12 @@
   <title>Admin | Possobelenzo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" type="text/css" href="{{asset('box.css')}}">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="{{URL::asset('admin/bootstrap/css/bootstrap.min.css')}}">
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{URL::asset('admin/plugins/datepicker/datepicker3.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ URL::asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{URL::asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
   <!-- Select 2 -->
   <link rel="stylesheet" href="{{URL::asset('admin/plugins/select2/select2.min.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
@@ -112,9 +111,8 @@
 
           <li class="header">MENU</li>
           <li><a href=""><i class="fa fa-dashboard"></i><span>Dashboard</span><i class="fa fa-angle-left"></i></a></li>
-          <li><a href=""><i class="fa fa-dashboard"></i><span>Category</span><i class="fa fa-angle-left"></i></a></li>
+          <li><a href="{{url('/admin/category/index')}}"><i class="fa fa-dashboard"></i><span>Category</span><i class="fa fa-angle-left"></i></a></li>
           <li><a href=""><i class="fa fa-dashboard"></i><span>Product</span><i class="fa fa-angle-left"></i></a></li>
-          <li><a href=""><i class="fa fa-dashboard"></i><span>Inventory</span><i class="fa fa-angle-left"></i></a></li>
           <li><a href=""><i class="fa fa-dashboard"></i><span>Order</span><i class="fa fa-angle-left"></i></a></li>
           <li class="treeview">
             <a href="#"><i class="fa fa-gear"></i><span>Settings</span><span class="pull-right-container"><i class="fa fa-angle-left"></i></span></a>
@@ -211,7 +209,7 @@
   <script>
 
     $(document).ready(function() {
-      $('#datatable').DataTable({
+      $('#dataTable').DataTable({
           "paging": true,
             
             "ordering": true,
