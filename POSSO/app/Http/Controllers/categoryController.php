@@ -14,7 +14,8 @@ class categoryController extends Controller
     }
     public function editForm($id)
     {
-    	return view('admin/categoryEditForm');
+        $data = category::find($id);
+    	return view('admin/categoryEditForm',compact('data'));
     }
     public function insert(Request $request)
     {
@@ -28,6 +29,12 @@ class categoryController extends Controller
     }
     public function update(Request $request)
     {
-
+        $insert = category::find($request->id);
+        if(category::where('nama_category',$request->nama_category)->count()>0)
+            return redirect()->action('categoryController@editForm',$request->id)->with('error','Nama Kategori telah terpakai');
+        $insert->nama_category = $request->nama_category;
+        if($insert->save())
+            return redirect()->action('categoryController@index')->with('success','Data berhasil ditambahkan');
+        return redirect()->action('categoryController@editForm',$request->id)->with('error','Data tidak dapat disimpan');
     }
 }

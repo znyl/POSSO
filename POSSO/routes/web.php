@@ -22,3 +22,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/index', 'adminController@index');
 Route::get('/admin/category/index', 'categoryController@index');
 Route::get('/admin/category/edit/{id}', 'categoryController@editForm');
+Route::post('/admin/category/insert', 'categoryController@insert');
+Route::post('/admin/category/update', 'categoryController@update');
+
+Route::get('/admin/product/index','productController@index');
+Route::get('/admin/product/detailed/{id}','productController@detailed');
+Route::get('/admin/product/edit/{id}','productController@editForm');
+Route::post('/admin/product/insert','productController@insert');
+Route::post('/admin/product/update','productController@update');
+
+
+
