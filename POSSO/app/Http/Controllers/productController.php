@@ -107,7 +107,10 @@ class productController extends Controller
             $insert_gambar = new file_gambar;
             $insert_gambar->direktori_file = '/image/product/'.$fileName;
             $insert_gambar->nama_file = $fileName;
-            $insert_gambar->save();
+            $insert_gambar->product_id = $request->id_product;
+            if($insert_gambar->save())
+                return redirect()->action('productController@detailed',$request->id_product)->with('success','Gambar berhasil ditambahkan');
+
         }
         else
         	return redirect()->action('productController@index')->with('error','Gambar tidak dapat disimpan');
