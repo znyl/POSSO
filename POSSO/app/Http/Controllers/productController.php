@@ -31,6 +31,8 @@ class productController extends Controller
     	if(product::find($id)->count()<0)
     		return redirect()->action('productController@index')->with('error','Data tidak ditemukan');
     	$data = product::find($id);
+        if($data->file_gambar_id==0)
+            return redirect()->action('productController@detailed',$id)->with('error','Gambar utama belum dipilih');
     	$data->status_product = 1;
     	if($data->save())
     		return redirect()->action('productController@detailed',$data->id)->with('success','Data berhasil dibuka');
@@ -93,12 +95,12 @@ class productController extends Controller
     	if($product->save())
     		return redirect()->action('productController@detailed',$product->id)->with('success','Gambar utama berhasil dipilih');
     }
-    public function insertPicture(Request $request)
+    public function insertGambar(Request $request)
     {
     	
     	$fileName = $request->file('gambar')->getClientOriginalName();
         $destinationPath = public_path()."/image/product/";
-        if(data_file::where('nama_file','=',$fileName)->count()>0)
+        if(file_gambar::where('nama_file','=',$fileName)->count()>0)
             return redirect()->action('productController@detailed',$request->id_product)->with('error','Nama file sudah ada');
         if($request->file('gambar')->move($destinationPath, $fileName))
         {

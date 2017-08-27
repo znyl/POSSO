@@ -24,7 +24,7 @@ Product
 		<tr>
 			<td>{{$index+1}}</td>
 			<td><a href="{{url('admin/product/detailed',$value['id'])}}">{{$value['nama_product']}}</a></td>
-			<td>{{$value['harga_product']}}</td>
+			<td>{{number_format($value['harga_product'])}}</td>
 			<td>{{$value['designer_product']}}</td>
 			<td>
 			<a href="{{url('admin/product/edit',$value['id'])}}"><button class="btn btn-flat btn-warning">Ubah</button></a>

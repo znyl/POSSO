@@ -24,7 +24,7 @@
 	</tr>
 	<tr>
 		<td>Harga</td>
-		<td>{{$data['harga_product']}}</td>
+		<td>{{number_format($data['harga_product'])}}</td>
 	</tr>
 	<tr>
 		<td>Lingkar Dada</td>
