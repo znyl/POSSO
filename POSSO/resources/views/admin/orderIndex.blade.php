@@ -7,7 +7,7 @@
 List Order
 @stop
 @section('box-body')
-<table class="table table-condensed table-striped table-hover table-bordered">
+<table class="table table-condensed table-striped table-hover table-bordered" id="dataTable">
 	<thead>
 		<tr>
 			<td>#</td>

@@ -54,8 +54,20 @@
 			<button data-toggle="modal" data-target="#MasterModal" class="btn btn-flat btn-primary">Tambah Gambar</button>
 		</td>
 	</tr>
-
 </table>
+<hr>
+@foreach($data->file_gambar as $index => $value)
+<div class="col-md-3">
+	<div class="box-image">
+		<div class="product-title">{{$value['nama_file']}} @if($data['file_gambar_id']==$value['id']) (Main) @endif</div>
+		<img src="{{asset($value['direktori_file'])}}" class="product-img">
+	</div>
+	<hr>
+	@if($data['file_gambar_id']!=$value['id'])
+	<center><a href="{{url('admin/product/setMainPicture',$value['id'])}}"><button class="btn btn-flat btn-primary">Set Gambar Utama</button></a></center>
+	@endif
+</div>
+@endforeach
 
 <div class="modal fade" id="MasterModal" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">

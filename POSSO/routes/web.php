@@ -36,6 +36,8 @@ Route::get('/admin/product/disable/{id}','productController@disable');
 Route::post('/admin/product/insertGambar','productController@insertGambar');
 Route::get('/admin/product/setMainPicture/{id}','productController@setMainPicture');
 
+Route::get('/admin/order/index','orderController@index');
+
 
 
 

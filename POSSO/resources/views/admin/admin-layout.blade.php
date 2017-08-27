@@ -11,13 +11,14 @@
   <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="{{URL::asset('admin/plugins/datepicker/datepicker3.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{URL::asset('font-awesome-4.7.0/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{URL::asset('font-awesome-4.7.0/css/font-awesome.min.css')}}">
   <!-- Select 2 -->
   <link rel="stylesheet" href="{{URL::asset('admin/plugins/select2/select2.min.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{URL::asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{URL::asset('admin/dist/css/AdminLTE.css')}}">
+  <link rel="stylesheet" href="{{asset('css/box.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{URL::asset('admin/dist/css/skins/_all-skins.min.css')}}">
@@ -125,7 +126,7 @@
 
       <!-- Main content -->
       <section class="content">
-
+      @yield('dashboard')
         <!-- Default box -->
         <div class="box">
           <div class="box-header with-border">
