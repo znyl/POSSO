@@ -30,6 +30,12 @@ Route::get('/admin/product/detailed/{id}','productController@detailed');
 Route::get('/admin/product/edit/{id}','productController@editForm');
 Route::post('/admin/product/insert','productController@insert');
 Route::post('/admin/product/update','productController@update');
+Route::post('/admin/product/setDiscount','productController@setDiscount');
+Route::get('/admin/product/enable/{id}','productController@enable');
+Route::get('/admin/product/disable/{id}','productController@disable');
+Route::post('/admin/product/insertGambar','productController@insertGambar');
+Route::get('/admin/product/setMainPicture/{id}','productController@setMainPicture');
+
 
 
 
