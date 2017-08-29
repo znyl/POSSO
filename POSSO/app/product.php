@@ -15,4 +15,8 @@ class product extends Model
     {
     	return $this->hasMany('App\file_gambar','product_id');
     }
+    public function discount()
+    {
+    	return $this->hasMany('App\discount','product_id');
+    }
 }
