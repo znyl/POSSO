@@ -36,6 +36,11 @@ Route::get('/admin/product/disable/{id}','productController@disable');
 Route::post('/admin/product/insertGambar','productController@insertGambar');
 Route::get('/admin/product/setMainPicture/{id}','productController@setMainPicture');
 
+Route::get('/admin/discount/index','discountController@index');
+Route::get('/admin/discount/addForm', 'discountController@addForm');
+Route::get('/admin/discount/addCart/{productId}/{diskon}', 'discountController@addCart');
+Route::get('/admin/discount/removeCart/{id}','discountController@removeCart');
+
 Route::get('/admin/order/index','orderController@index');
 
 
