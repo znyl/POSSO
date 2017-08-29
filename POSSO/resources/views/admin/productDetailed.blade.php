@@ -24,7 +24,22 @@
 	</tr>
 	<tr>
 		<td>Harga</td>
-		<td>{{number_format($data['harga_product'])}}</td>
+		<td>
+		@if($diskon['status'])
+		<span style="text-decoration: line-through;">{{number_format($data['harga_product'])}}</span> > {{number_format($diskon['harga_setelah_diskon'])}}
+		@else 
+		{{number_format($data['harga_product'])}}
+		@endif</td>
+	</tr>
+	
+	<tr>
+		<td>Diskon</td>
+		<td>
+		@if($diskon['status'])
+		{{$diskon['discount']}}%
+		@else
+		Barang Tidak didiskon
+		@endif</td>
 	</tr>
 	<tr>
 		<td>Lingkar Dada</td>
