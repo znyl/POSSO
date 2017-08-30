@@ -40,6 +40,8 @@ Route::get('/admin/discount/index','discountController@index');
 Route::get('/admin/discount/addForm', 'discountController@addForm');
 Route::get('/admin/discount/addCart/{productId}/{diskon}', 'discountController@addCart');
 Route::get('/admin/discount/removeCart/{id}','discountController@removeCart');
+Route::post('/admin/discount/insertGroup','discountController@insertGroup');
+Route::post('/admin/discount/insertSingle','discountController@insertSingle');
 
 Route::get('/admin/order/index','orderController@index');
 

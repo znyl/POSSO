@@ -14,6 +14,8 @@ Discounted Product
 			<td>#</td>
 			<td>Nama Product</td>
 			<td>Harga</td>
+			<td>Diskon</td>
+			<td>Setelah Diskon</td>
 			<td>Designer</td>
 			<td>Action</td>
 		</tr>
@@ -22,9 +24,11 @@ Discounted Product
 		@foreach($data as $index => $value)
 		<tr>
 			<td>{{$index+1}}</td>
-			<td><a href="{{url('admin/product/detailed',$value['id'])}}">{{$value['nama_product']}}</a></td>
-			<td>{{number_format($value['harga_product'])}}</td>
-			<td>{{$value['designer_product']}}</td>
+			<td><a href="{{url('admin/product/detailed',$value['id'])}}">{{$value->product['nama_product']}}</a></td>
+			<td>{{number_format($value->product['harga_product'])}}</td>
+			<td>{{$value['discount']}}%</td>
+			<td>{{number_format($value['harga_diskon'])}}</td>
+			<td>{{$value->product['designer_product']}}</td>
 			<td>
 			<a href="{{url('admin/product/edit',$value['id'])}}"><button class="btn btn-flat btn-warning">Ubah</button></a>
 			@if($value['status_product']==0)
