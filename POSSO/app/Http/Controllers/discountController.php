@@ -16,13 +16,17 @@ class discountController extends Controller
     public function addForm()
     {
         $cart = array();
-        foreach(session('bonus') as $index =>$value)
+        if(session('bonus')!=null)
         {
-            $get=product::find($index);
-            $get['diskon']=$value;
-            $get['harga_diskon']= $get['harga_product']-($get['harga_product']*$get['diskon']/100);
-            array_push($cart,$get);
+             foreach(session('bonus') as $index =>$value)
+            {
+                $get=product::find($index);
+                $get['diskon']=$value;
+                $get['harga_diskon']= $get['harga_product']-($get['harga_product']*$get['diskon']/100);
+                array_push($cart,$get);
+            }
         }
+       
     	$data = product::all();
     	return view('admin/discountAddForm',compact('data','cart'));
     }
@@ -57,20 +61,7 @@ class discountController extends Controller
         }
         echo json_encode($cart);
     }
-    public function removeCart($product_id)
-    {
-    	$data = session('bonus');
-    	unset($data[$product_id]);
-    	session(['bonus'=>$data]);
-    	$cart = array();
-        foreach(session('bonus') as $index =>$value)
-        {
-            $get=product::find($index);
-            $get['diskon']=$value;
-            array_push($cart,$get);
-        }
-        echo json_encode($cart);
-    }
+    
     public function insert($data)
     {
 

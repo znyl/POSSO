@@ -71,7 +71,7 @@ Discount Form
 </table>
 @stop
 @section('box-footer')
-<a href="{{url('admin/discount/index')}}"><button class="btn btn-danger btn-flat">Kembali</button></a>
+<a href="{{url('admin/discount/index')}}"><button type="button" class="btn btn-danger btn-flat">Kembali</button></a>
 <input type="submit" name="submit" class="btn btn-flat btn-success" value="Simpan">
 </form>
 @stop

@@ -206,13 +206,11 @@
             "ordering": true,
             "info": true,
             "autoWidth": true,
+             "scrollX": true
       });
 
       $(".select2").select2(); 
-      //Date picker
-      $('#datepicker').datepicker({
-        autoclose: true
-      });
+      
       $(".textarea").wysihtml5();
     });
   </script>
