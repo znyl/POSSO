@@ -22,7 +22,57 @@ Author URI: http://xpeedstudio.com
  14. FOOTER - LINE NO 2020
 ==========================================*/
 
+.logo
+{
+height: 70px;
+}
 
+.product-container
+{
+    padding-top:10px; 
+    padding-right:10px; 
+    padding-left:10px;  
+    border: 1px solid transparent;
+    color: #333;
+    width: 100%;
+    margin-bottom: 20px;
+    -webkit-transition: border-color 0.5s ease;
+         -moz-transition: border-color 0.5s ease;
+           -o-transition: border-color 0.5s ease;
+          -ms-transition: border-color 0.5s ease;
+              transition: border-color 0.5s ease;  
+    
+}
+
+
+.product-container .product-title
+{
+    letter-spacing:0.5px; 
+    border-bottom: 1px solid #e2e2e2; 
+    font-size:16px; 
+    margin-top:5px; 
+    margin-bottom:0px;
+    text-align:center;
+
+}
+.product-container .product-designer
+{
+    text-align:center;
+    margin-bottom:5px;
+}
+.product-container .product-price
+{
+    text-align:center; 
+    margin-bottom:0px;
+}
+.line-through
+{
+    text-decoration: line-through;
+}
+.product-container:hover
+{
+     border: 1px solid #e2e2e2;
+}
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -872,7 +922,7 @@ Nav Menu style
 
 .navbar-brand {
     height: 80px;
-    padding: 30px 15px;
+    padding: 5px 15px;
 }
 
 .navbar-nav > li > a {
@@ -904,29 +954,19 @@ Nav Menu style
 .model-banner,
 .contact-banner,
 .about-banner,
-.blog-banner,
-.home{
+.blog-banner{
     background-size: cover;
     position: relative;
 }
+
 .home{
-    background: url(../images/background/homepage-bg.jpg) no-repeat top center;
+    background-size: cover;
+    position: relative;
+   background-position: center top;
+   min-height: 100vh;
+
 }
-.service-banner{
-    background: url(../images/background/services-bg.jpg) no-repeat bottom center;
-}
-.model-banner{
-    background: url(../images/background/model-bg.jpg) no-repeat bottom center;
-}
-.contact-banner{
-    background: url(../images/background/contact-bg.jpg) no-repeat bottom center;
-}
-.about-banner{
-    background: url(../images/background/about-bg.jpg) no-repeat bottom center;
-}
-.blog-banner{
-    background: url(../images/background/blog-bg.jpg) no-repeat bottom center;
-}
+
 
 
 
