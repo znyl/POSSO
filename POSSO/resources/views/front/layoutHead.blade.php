@@ -1,6 +1,6 @@
  <head>
     <meta charset="utf-8">
-    <title>Pouseidon - Free HTML5 Model Agency Bootstrap Template</title>
+    <title>Possobelenzo - @yield('page-title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.ico">

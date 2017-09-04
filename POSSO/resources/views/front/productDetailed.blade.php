@@ -38,7 +38,7 @@ model-banner
                                             <p>Panjang:</p>
                                         </div>
                                         <div class="col-md-6 col-xs-6 text-left">
-                                            <p class="@if($data['status_diskon']) line-through @endif">Rp. {{number_format($data['harga_product'])}} @if($data['status_diskon']) <span class="badge">{{$data['diskon']['discount']}}% Off</span> Rp. {{number_format($data['diskon']['harga_diskon'])}} @endif </p>
+                                            <p class="@if($data['status_diskon']) line-through @endif">Rp. {{number_format($data['harga_product'],0,",",".")}} @if($data['status_diskon']) <span class="badge">{{$data['diskon']['discount']}}% Off</span> Rp. {{number_format($data['diskon']['harga_diskon'],0,",",".")}} @endif </p>
                                             <p>{{$data->category['nama_category']}}</p>
                                             <p>{{$data['designer_product']}}</p>
                                             <p>{{$data['lingkar_dada']}} cm</p>

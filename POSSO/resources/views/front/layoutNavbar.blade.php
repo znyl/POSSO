@@ -29,8 +29,8 @@
             </button>
             <a class="navbar-brand" href="index.html">
 
-                <img src="{{asset('image/logo/logo-white.png')}}" class="logo logo-display" alt="">
-                <img src="{{asset('image/logo/logo-black.png')}}" class="logo logo-scrolled" alt="">
+                <img src="{{asset('image/logo/logo-white.png')}}" class="logo logo-display img-fluid" alt="">
+                <img src="{{asset('image/logo/logo-black.png')}}" class="logo logo-scrolled img-fluid" alt="">
 
             </a>
         </div>
