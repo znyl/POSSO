@@ -39,17 +39,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                <li><a href="index.html">home</a></li> 
+                <li><a href="{{url('/')}}">home</a></li> 
 				<li><a href="aboutus.html">about</a></li> 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Product
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{url('/product/category',1)}}">Test</a></li>
-                        <li><a href="">Test</a></li>
-                        <li><a href="">Test</a></li>
-                        <li><a href="">Test</a></li>
+                        @foreach($category as $index => $value)
+                        <li><a href="{{url('product/category',$value['id'])}}">{{$value['nama_category']}}</a></li>
+                        @endforeach
                         <li><a href="">MUA</a></li>
                     </ul>
                 </li>							                   

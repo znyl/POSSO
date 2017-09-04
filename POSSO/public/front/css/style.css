@@ -435,16 +435,16 @@ Button
 }
 
 .btn-default{
-    border: 2px solid;
+    border: 1px solid;
     border-color:#000000;
     background-color: transparent;
     color:#000000;
     padding:0.8rem 2.5rem;
-    border-radius: 30px;;
+   
 }
 .btn-default:hover{
-    border-color:#ee997b;
-    background-color: #ee997b;
+    border-color:#333;
+    background-color: #333;
 }
 
 .btn-primary{
@@ -957,6 +957,7 @@ Nav Menu style
 .blog-banner{
     background-size: cover;
     position: relative;
+    background-position: center top;
 }
 
 .home{

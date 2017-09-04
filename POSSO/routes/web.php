@@ -18,6 +18,7 @@ Route::get('/','frontController@index');
 Route::get('/product/category/{id}','frontController@product');
 Route::get('/product/detailed/{id}','frontController@productDetailed');
 Route::get('/MUA/profile','frontController@mua');
+Route::get('/addCart/{id}/{qty}','cartController@add');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

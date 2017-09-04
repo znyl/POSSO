@@ -78,6 +78,15 @@ Author URI: http://www.xpeedstudio.com
         overflow: hidden;
     }
 
+    .service-banner,
+    .model-banner,
+    .contact-banner,
+    .about-banner,
+    .blog-banner,
+    .home{
+        margin-top:86px; 
+    }
+
 
 }
 
