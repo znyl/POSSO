@@ -19,7 +19,8 @@ class productController extends Controller
     public function editForm($id)
     {
     	$data = product::find($id);
-    	return view('admin/productEditForm',compact('data'));
+        $category = category::all();
+    	return view('admin/productEditForm',compact('data','category'));
     }
     public function detailed($id)
     {

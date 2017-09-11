@@ -16,7 +16,7 @@ model-banner
                                 </div>
                                 <hr>
                                 @foreach($data->file_gambar as $index => $value)
-                                <img class="img-thumbnail" src="{{asset($value ['direktori_file'])}}" alt="" height="60px" width="60px" />
+                                <img class="img-thumbnail product-img-other" src="{{asset($value ['direktori_file'])}}" alt="">
                                 @endforeach
                                
                                
@@ -48,7 +48,7 @@ model-banner
 
                                         <div class="col-md-12 text-left">
                                         <hr>
-                                            <button class="btn btn-default">Pesan</button>
+                                            <a href="{{url('/addCart',array($data['id'],1))}}"><button class="btn btn-default">Pesan</button></a>
                                         </div>
                                     </div>
                                 </div>

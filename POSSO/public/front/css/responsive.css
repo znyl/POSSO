@@ -101,6 +101,9 @@ Author URI: http://www.xpeedstudio.com
         font-size:90%;
         line-height: 2rem;
     }
+    .table-container {
+    overflow-x: scroll;
+    }
     .xs-pull-none{
         float: none !important;
     }

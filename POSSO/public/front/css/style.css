@@ -47,13 +47,16 @@ height: 70px;
 
 .product-container .product-title
 {
-    letter-spacing:0.5px; 
+     
     border-bottom: 1px solid #e2e2e2; 
-    font-size:16px; 
     margin-top:5px; 
     margin-bottom:0px;
     text-align:center;
 
+}
+.product-container .product-image
+{
+    min-height: 360px;
 }
 .product-container .product-designer
 {
@@ -73,6 +76,22 @@ height: 70px;
 {
      border: 1px solid #e2e2e2;
 }
+.table-border{
+    border: 1px solid;
+    border-color: #e2e2e2;
+    min-width: 1000px;
+}
+
+.table-border td{
+    border: 1px solid #e2e2e2;
+}
+.product-img-other{
+    height: 60px;
+    width: 60px;
+    padding: 1px;
+    border-radius: 0px;
+}
+
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -442,7 +461,14 @@ Button
     padding:0.8rem 2.5rem;
    
 }
-.btn-default:hover{
+.btn-small{
+    border: 1px solid;
+    border-color:#000000;
+    background-color: transparent;
+    color:#000000;
+    display: inline;
+}
+.btn-default:hover, .btn-small:hover{
     border-color:#333;
     background-color: #333;
 }
@@ -947,6 +973,8 @@ Nav Menu style
     border:0px solid;
     background-color: #ff7854 !important;
 }
+
+
 
 
 /*All Banner style*/
