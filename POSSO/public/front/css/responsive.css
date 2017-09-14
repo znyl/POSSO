@@ -101,6 +101,13 @@ Author URI: http://www.xpeedstudio.com
         font-size:90%;
         line-height: 2rem;
     }
+    .product-container{
+        min-height: 437px;
+    }
+    .product-container .product-image
+    {
+        min-height: 300px;
+    }
     .table-container {
     overflow-x: scroll;
     }

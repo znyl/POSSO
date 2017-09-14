@@ -70,6 +70,7 @@ class productController extends Controller
     	$insert->lingkar_pinggul = $request->lingkar_pinggul;
     	$insert->panjang = $request->panjang;
     	$insert->deskripsi_product = $request->deskripsi_product;
+        $insert->harga_sewa_product = $request->harga_sewa_product;
     	$insert->category_id = $request->category_id;
     	$insert->file_gambar_id = 0;
     	if($insert->save())
@@ -78,6 +79,7 @@ class productController extends Controller
     public function update(Request $request)
     {
     	$insert = product::find($request->id);
+        $insert->harga_sewa_product = $request->harga_sewa_product;
     	$insert->nama_product = $request->nama_product;
     	$insert->harga_product = $request->harga_product;
     	$insert->designer_product = $request->designer_product;

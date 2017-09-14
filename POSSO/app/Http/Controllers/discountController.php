@@ -20,17 +20,24 @@ class discountController extends Controller
         {
              foreach(session('bonus') as $index =>$value)
             {
-                $get=product::find($index);
-                $get['diskon']=$value;
-                $get['harga_diskon']= $get['harga_product']-($get['harga_product']*$get['diskon']/100);
-                array_push($cart,$get);
+                foreach($value as $index2 => $value2)
+                {
+                    $get=product::find($index2);
+                    $get['diskon']=$value2;
+                    if($index==1)
+                        $get['harga_diskon']= $get['harga_product']-($get['harga_product']*$get['diskon']/100);
+                    else if($index==2)
+                        $get['harga_diskon']= $get['harga_sewa_product']-($get['harga_sewa_product']*$get['diskon']/100);
+                    $get['tipe_transaksi']=$index;
+                    array_push($cart,$get);
+                }
             }
         }
        
     	$data = product::all();
     	return view('admin/discountAddForm',compact('data','cart'));
     }
-    public function addCart($product_id,$diskon)
+    public function addCart($product_id,$diskon,$tipe)
     {
         $data = session('bonus');
         if($data==null)
@@ -44,20 +51,30 @@ class discountController extends Controller
         }
         else if($diskon<0)
             $diskon = 0;
-        $data[$product_id]=$diskon;
-        if($data[$product_id]==0)
+        $data[$tipe][$product_id]=$diskon;
+        if($data[$tipe][$product_id]==0)
         {
 
             unset($data[$product_id]);
         }
         session(['bonus'=>$data]);
         $cart = array();
+
         foreach(session('bonus') as $index =>$value)
         {
-            $get=product::find($index);
-            $get['diskon']=$value;
-            $get['harga_diskon']= $get['harga_product']-($get['harga_product']*$get['diskon']/100);
-            array_push($cart,$get);
+            foreach($value as $index2 => $value2)
+            {
+                $get=product::find($index2);
+                $get['diskon']=$value2;
+                if($index==1)
+                    $get['harga_diskon']= $get['harga_product']-($get['harga_product']*$get['diskon']/100);
+                else if($index==2)
+                    $get['harga_diskon']= $get['harga_sewa_product']-($get['harga_sewa_product']*$get['diskon']/100);
+
+                $get['tipe_transaksi']=$index;
+                array_push($cart,$get);
+            }
+            
         }
         echo json_encode($cart);
     }
@@ -78,14 +95,27 @@ class discountController extends Controller
 
         foreach(session('bonus') as $index => $value)
         {
-            $insert = new discount;
-            $insert->product_id = $index;
-            $insert->discount = $value;
-            $insert->tgl_mulai = $request->tgl_mulai;
-            $insert->tgl_akhir = $request->tgl_akhir;
-            $harga= product::find($index);
-            $insert->harga_diskon = $harga->harga_product - ($harga->harga_product*$value/100);
-            $insert->save();
+            foreach($value as $index2 =>$value2)
+            {
+                $insert = new discount;
+                $insert->product_id = $index2;
+                $insert->discount = $value2;
+                $insert->tgl_mulai = $request->tgl_mulai;
+                $insert->tgl_akhir = $request->tgl_akhir;
+                $harga= product::find($index);
+                if($index==1)
+                {
+                    $insert->harga_diskon = $harga->harga_product - ($harga->harga_product*$value2/100);
+                }
+                else if($index==2)
+                {
+                    $insert->harga_diskon = $harga->harga_sewa_product - ($harga->harga_sewa_product*$value2/100);
+                }
+                $insert->tipe_transaksi=$index;
+                $insert->save();
+            }
+            
+
         }
         session()->forget('bonus');
         return redirect('/admin/discount/index')->with('success','Data berhasil disimpan');

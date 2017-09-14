@@ -14,13 +14,13 @@ Edit {{$data['nama_product']}}
 	<div class="form-group">
 		<label class="control-label col-md-3">Nama</label>
 		<div class="col-md-6">
-			<input type="text" name="nama_product" class="form-control" value="{{data['nama_product']}}" required>
+			<input type="text" name="nama_product" class="form-control" value="{{$data['nama_product']}}" required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-md-3">Designer</label>
 		<div class="col-md-6">
-			<input type="text" class="form-control" value="{{$data['designer_product" required>
+			<input type="text" class="form-control" name="designer_product" value="{{$data['designer_product']}}" required>
 		</div>
 	</div>
 	<div class="form-group">
@@ -43,9 +43,36 @@ Edit {{$data['nama_product']}}
 		<label class="control-label col-md-3">Harga Sewa</label>
 		<div class="col-md-6">
 			<input type="number" name="harga_sewa_product" class="form-control" required value="{{$data['harga_sewa_product']}}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Lingkar Dada (cm)</label>
+		<div class="col-md-6">
+			<input type="number" name="lingkar_dada" class="form-control" min="0" value="{{$data['lingkar_dada']}}" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Lingkar Pinggul (cm)</label>
+		<div class="col-md-6">
+			<input type="number" name="lingkar_pinggul" class="form-control" min="0" value="{{$data['lingkar_pinggul']}}" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Panjang (cm)</label>
+		<div class="col-md-6">
+			<input type="number" name="panjang" class="form-control" min="0" value="{{$data['panjang']}}" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-3">Keterangan</label>
+		<div class="col-md-6">
+			<textarea class="form-control" name="deskripsi_product" value="{{$data['deskripsi_product']}}">{!! $data['deskripsi_product'] !!}</textarea>
+		</div>
 	</div>
 
 @stop
 @section('box-footer')
+<input type="submit" value="Simpan" name="submit" class="btn btn-success btn-flat">
+<a href="{{url('admin/product/detailed',$data['id'])}}"><button class="btn btn-danger btn-flat" type="button">Kembali</button></a>
 </form>
 @stop

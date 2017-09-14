@@ -30,7 +30,8 @@ model-banner
                                     <div class="row">
                                         
                                         <div class="col-md-6 col-xs-6 text-left">
-                                            <p>Harga</p>
+                                            <p>Harga Jual</p>
+                                            <p>Harga Sewa</p>
                                             <p>Tipe Produk:</p>
                                             <p>Desainer</p>
                                             <p>Lingkar Dada:</p>

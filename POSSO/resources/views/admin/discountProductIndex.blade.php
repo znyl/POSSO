@@ -17,6 +17,8 @@ Discounted Product
 			<td>Diskon</td>
 			<td>Setelah Diskon</td>
 			<td>Designer</td>
+			<td>Tipe Transaksi</td>
+			<td>Tanggal</td>
 			<td>Action</td>
 		</tr>
 	</thead>
@@ -29,6 +31,14 @@ Discounted Product
 			<td>{{$value['discount']}}%</td>
 			<td>{{number_format($value['harga_diskon'])}}</td>
 			<td>{{$value->product['designer_product']}}</td>
+			<td>
+				@if($value['tipe_transaksi']==1)
+					Jual
+				@elseif($value['tipe_transaksi']==2)
+					Sewa
+				@endif
+			</td>
+			<td> {{date_format(date_create($value['tgl_mulai']),'d M Y')}} - {{date_format(date_create($value['tgl_akhir']),'d M Y')}}</td>
 			<td>
 			<a href="{{url('admin/product/edit',$value['id'])}}"><button class="btn btn-flat btn-warning">Ubah</button></a>
 			@if($value['status_product']==0)
