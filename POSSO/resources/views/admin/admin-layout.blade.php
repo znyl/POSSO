@@ -174,6 +174,7 @@
     <!-- /.content-wrapper -->
   </div>
   <!-- /.wrapper -->
+ 
   <script src="{{URL::asset('admin/plugins/jQuery/jquery-2.2.3.min.js')}}"></script>
 
   <!-- Bootstrap 3.3.6 -->
@@ -195,7 +196,7 @@
   <!-- Bootstrap WYSIHTML5 -->
   <script src="{{URL::asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
  
-   
+  @yield('script')
   <script>
 
     $(document).ready(function() {
@@ -205,13 +206,11 @@
             "ordering": true,
             "info": true,
             "autoWidth": true,
+             "scrollX": true
       });
 
       $(".select2").select2(); 
-      //Date picker
-      $('#datepicker').datepicker({
-        autoclose: true
-      });
+      
       $(".textarea").wysihtml5();
     });
   </script>

@@ -19,12 +19,23 @@ class productController extends Controller
     public function editForm($id)
     {
     	$data = product::find($id);
-    	return view('admin/productEditForm',compact('data'));
+        $category = category::all();
+    	return view('admin/productEditForm',compact('data','category'));
     }
     public function detailed($id)
     {
     	$data = product::find($id);
-    	return view('admin/productDetailed',compact('data'));
+        $diskon = $data->discount->last();
+        if($diskon['tgl_mulai']<=date('Y-m-d') && $diskon['tgl_akhir']>=date('Y-m-d'))
+        {
+            $diskon['status']=true;
+            $diskon['harga_setelah_diskon'] = $data['harga_product']-($data['harga_product']*$diskon['discount']/100);
+        }
+        else
+        {
+            $diskon['status']=false;
+        }
+    	return view('admin/productDetailed',compact('data','diskon'));
     }
     public function enable($id)
     {
@@ -59,6 +70,7 @@ class productController extends Controller
     	$insert->lingkar_pinggul = $request->lingkar_pinggul;
     	$insert->panjang = $request->panjang;
     	$insert->deskripsi_product = $request->deskripsi_product;
+        $insert->harga_sewa_product = $request->harga_sewa_product;
     	$insert->category_id = $request->category_id;
     	$insert->file_gambar_id = 0;
     	if($insert->save())
@@ -67,6 +79,7 @@ class productController extends Controller
     public function update(Request $request)
     {
     	$insert = product::find($request->id);
+        $insert->harga_sewa_product = $request->harga_sewa_product;
     	$insert->nama_product = $request->nama_product;
     	$insert->harga_product = $request->harga_product;
     	$insert->designer_product = $request->designer_product;
@@ -77,14 +90,6 @@ class productController extends Controller
     	$insert->category_id = $request->category_id;
     	if($insert->save())
     		return redirect()->action('productController@index')->with('success','Data berhasil diubah');
-
-    }
-    public function setDiskon(Request $request)
-    {
-    	$data = product::find($request->id_product);
-    	$data->diskon = $request->diskon;
-    	if($data->save())
-    		return redirect()->action('productController@detailed',$request->id_product)->with('success','Produk berhasil didiskon');
 
     }
     public function setMainPicture($id)

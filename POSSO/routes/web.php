@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin/admin-layout');
-});
+
 
 Auth::routes();
+Route::get('/','frontController@index');
+Route::get('/product/category/{id}','frontController@product');
+Route::get('/product/detailed/{id}','frontController@productDetailed');
+Route::get('/MUA/profile','frontController@mua');
+Route::get('/addCart/{id}/{qty}','cartController@addCart');
+Route::get('/cart','cartController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,6 +39,13 @@ Route::get('/admin/product/enable/{id}','productController@enable');
 Route::get('/admin/product/disable/{id}','productController@disable');
 Route::post('/admin/product/insertGambar','productController@insertGambar');
 Route::get('/admin/product/setMainPicture/{id}','productController@setMainPicture');
+
+Route::get('/admin/discount/index','discountController@index');
+Route::get('/admin/discount/addForm', 'discountController@addForm');
+Route::get('/admin/discount/addCart/{productId}/{diskon}/{tipe}', 'discountController@addCart');
+Route::get('/admin/discount/removeCart/{id}','discountController@removeCart');
+Route::post('/admin/discount/insertGroup','discountController@insertGroup');
+Route::post('/admin/discount/insertSingle','discountController@insertSingle');
 
 Route::get('/admin/order/index','orderController@index');
 

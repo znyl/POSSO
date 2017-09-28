@@ -72,9 +72,15 @@ Product
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3">Harga</label>
+						<label class="control-label col-md-3">Harga Jual</label>
 						<div class="col-md-6">
 							<input type="number" name="harga_product" class="form-control" min="0" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Harga Sewa</label>
+						<div class="col-md-6">
+							<input type="number" name="harga_sewa_product" class="form-control" min="0" required>
 						</div>
 					</div>
 					<div class="form-group">
