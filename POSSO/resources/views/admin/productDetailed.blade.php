@@ -23,39 +23,22 @@
 		<td>{{$data['designer_product']}}</td>
 	</tr>
 	<tr>
-		<td>Harga</td>
+		<td>Harga Jual</td>
 		<td>
-		@if($diskon['status'])
-		<span style="text-decoration: line-through;">{{number_format($data['harga_product'])}}</span> > {{number_format($diskon['harga_setelah_diskon'])}}
+		@if($diskon['status_jual'])
+		<span style="text-decoration: line-through;">{{number_format($data['harga_product'])}}</span> <span class="badge">{{$diskon['discount_jual']}}% Off</span> {{number_format($diskon['harga_jual_setelah_diskon'])}}
 		@else 
 		{{number_format($data['harga_product'])}}
 		@endif</td>
 	</tr>
-	
 	<tr>
-		<td>Diskon</td>
+		<td>Harga Sewa</td>
 		<td>
-		@if($diskon['status'])
-		{{$diskon['discount']}}%
-		@else
-		Barang Tidak didiskon
+		@if($diskon['status_sewa'])
+		<span style="text-decoration: line-through;">{{number_format($data['harga_product'])}}</span> <span class="badge">{{$diskon['discount_sewa']}}% Off</span> {{number_format($diskon['harga_sewa_setelah_diskon'])}}
+		@else 
+		{{number_format($data['harga_product'])}}
 		@endif</td>
-	</tr>
-	<tr>
-		<td>Lingkar Dada</td>
-		<td>{{$data['lingkar_dada']}}cm</td>
-	</tr>
-	<tr>
-		<td>Lingkar Pinggul</td>
-		<td>{{$data['lingkar_pinggul']}}cm</td>
-	</tr>
-	<tr>
-		<td>Panjang</td>
-		<td>{{$data['panjang']}}cm</td>
-	</tr>
-	<tr>
-		<td>Keterangan</td>
-		<td>{!!$data['deskripsi_product']!!}</td>
 	</tr>
 	<tr>
 		<td>Action</td>
@@ -67,6 +50,7 @@
 			<a href="{{url('admin/product/disable',$data['id'])}}"><button class="btn btn-flat btn-danger">Disable</button></a>
 			@endif
 			<button data-toggle="modal" data-target="#MasterModal" class="btn btn-flat btn-primary">Tambah Gambar</button>
+			<button data-toggle="modal" data-target="#MasterModalSize" class="btn btn-flat btn-primary">Tambah Ukuran</button>
 		</td>
 	</tr>
 </table>
@@ -113,6 +97,53 @@
     	</div>
   	</div>
 </div>  
+
+<div class="modal fade" id="MasterModalSize" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+       			 <h4 class="modal-title" id="myModalLabel">Tambah Ukuran</h4>
+     		</div>
+      		<div class="modal-body">
+				<form class="form-horizontal" method="post" action="{{url('admin/product/insertSize')}}">
+					{{csrf_field()}}
+					<div class="form-group">
+						<label class="control-label col-md-3">Nama Ukuran</label>
+						<div class="col-md-6">
+							<input type="number" name="lingkar_dada" class="form-control" min="0" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Lingkar Dada (cm)</label>
+						<div class="col-md-6">
+							<input type="number" name="lingkar_dada" class="form-control" min="0" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Lingkar Pinggul (cm)</label>
+						<div class="col-md-6">
+							<input type="number" name="lingkar_pinggul" class="form-control" min="0" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Panjang (cm)</label>
+						<div class="col-md-6">
+							<input type="number" name="panjang" class="form-control" min="0" required>
+						</div>
+					</div>
+					<input type="hidden" name="id_product" value="{{$data['id']}}">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary btn-flat" value="Add">
+			</div>
+				</form>
+      
+    	</div>
+  	</div>
+</div>  
+
 @stop
 @section('box-footer')
 <a href="{{url('admin/product/index')}}"><button class="btn btn-flat btn-danger">Kembali</button></a>
