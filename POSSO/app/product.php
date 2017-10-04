@@ -19,4 +19,8 @@ class product extends Model
     {
     	return $this->hasMany('App\discount','product_id');
     }
+    public function size()
+    {
+        return $this->hasMany('App\size','product_id');
+    }
 }
