@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\product;
 use App\category;
+use App\discount;
 use App\file_gambar;
 class productController extends Controller
 {
@@ -25,16 +26,33 @@ class productController extends Controller
     public function detailed($id)
     {
     	$data = product::find($id);
-        $diskon = $data->discount->last();
-        if($diskon['tgl_mulai']<=date('Y-m-d') && $diskon['tgl_akhir']>=date('Y-m-d'))
+        $diskon2 = discount::where('tgl_akhir','>=',date('Y-m-d'))->where('tgl_mulai','<=',date('Y-m-d'))->where('product_id','=',$data['id'])->get();
+        if($diskon2->count()>0)
         {
-            $diskon['status']=true;
-            $diskon['harga_setelah_diskon'] = $data['harga_product']-($data['harga_product']*$diskon['discount']/100);
+            foreach($diskon2 as $index => $value)
+            {
+                if($value['tipe_transaksi']==1)
+                {
+                    $diskon['status_jual']=true;
+                    $diskon['harga_jual_setelah_diskon'] = $data['harga_product']-($data['harga_product']*$value['discount']/100);
+                    $diskon['discount_jual']=$value['discount'];
+                }
+                else if($value['tipe_transaksi']==2)
+                {
+                    $diskon['status_sewa']=true;
+                    $diskon['harga_sewa_setelah_diskon'] = $data['harga_sewa_product']-($data['harga_sewa_product']*$value['discount']/100);
+                    $diskon['discount_sewa']=$value['discount'];
+                }
+                
+            }
+            
         }
         else
         {
-            $diskon['status']=false;
+            $diskon['status_jual']=false;
+            $diskon['status_sewa']=false;
         }
+        
     	return view('admin/productDetailed',compact('data','diskon'));
     }
     public function enable($id)
@@ -66,16 +84,13 @@ class productController extends Controller
     	$insert->designer_product = $request->designer_product;
     	$insert->diskon = 0;
     	$insert->status_product = 0;
-    	$insert->lingkar_dada = $request->lingkar_dada;
-    	$insert->lingkar_pinggul = $request->lingkar_pinggul;
-    	$insert->panjang = $request->panjang;
-    	$insert->deskripsi_product = $request->deskripsi_product;
         $insert->harga_sewa_product = $request->harga_sewa_product;
     	$insert->category_id = $request->category_id;
     	$insert->file_gambar_id = 0;
     	if($insert->save())
     		return redirect()->action('productController@index')->with('success','Data berhasil ditambahkan');
     }
+
     public function update(Request $request)
     {
     	$insert = product::find($request->id);
@@ -92,6 +107,7 @@ class productController extends Controller
     		return redirect()->action('productController@index')->with('success','Data berhasil diubah');
 
     }
+
     public function setMainPicture($id)
     {
     	$data = file_gambar::find($id);
@@ -100,6 +116,7 @@ class productController extends Controller
     	if($product->save())
     		return redirect()->action('productController@detailed',$product->id)->with('success','Gambar utama berhasil dipilih');
     }
+
     public function insertGambar(Request $request)
     {
     	
@@ -120,4 +137,6 @@ class productController extends Controller
         else
         	return redirect()->action('productController@index')->with('error','Gambar tidak dapat disimpan');
     }
+
+    
 }
