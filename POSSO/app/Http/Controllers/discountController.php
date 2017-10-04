@@ -10,7 +10,7 @@ class discountController extends Controller
     //
     public function index()
     {
-    	$data = discount::where('tgl_akhir','>=',date('Y-m-d'))->get();
+    	$data = discount::where('tgl_akhir','>=',date('Y-m-d'))->where('tgl_mulai','<=',date('Y-m-d'))->get();
     	return view('admin/discountProductIndex',compact('data'));
     }
     public function addForm()
