@@ -14,6 +14,7 @@
 
 
 Auth::routes();
+Route::post('/test','frontController@test');
 Route::get('/','frontController@index');
 Route::get('/product/category/{id}','frontController@product');
 Route::get('/product/detailed/{id}','frontController@productDetailed');
@@ -46,6 +47,10 @@ Route::get('/admin/discount/addCart/{productId}/{diskon}/{tipe}', 'discountContr
 Route::get('/admin/discount/removeCart/{id}','discountController@removeCart');
 Route::post('/admin/discount/insertGroup','discountController@insertGroup');
 Route::post('/admin/discount/insertSingle','discountController@insertSingle');
+
+Route::post('/admin/size/insertSize','productSizeController@insert');
+Route::get('/admin/size/editForm/{id}','productSizeController@edit');
+Route::post('/admin/size/updateSize','productSizeController@update');
 
 Route::get('/admin/order/index','orderController@index');
 

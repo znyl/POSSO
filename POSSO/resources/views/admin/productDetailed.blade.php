@@ -9,6 +9,7 @@
 {{$data['nama_product']}}
 @stop
 @section('box-body')
+<h3><i class="fa fa-angle-right"></i> Informasi Produk</h3>
 <table class="table table-bordered table-condensed table-hover table-striped">
 	<tr>
 		<td style="width: 30%;">Nama Product</td>
@@ -53,6 +54,32 @@
 			<button data-toggle="modal" data-target="#MasterModalSize" class="btn btn-flat btn-primary">Tambah Ukuran</button>
 		</td>
 	</tr>
+</table>
+<hr>
+<h3><i class="fa fa-angle-right"></i> Daftar Ukuran</h3>
+<table class="table table-condensed table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nama Ukuran</td>
+			<td>Lingkar Dada</td>
+			<td>Lingkar Pinggul</td>
+			<td>Panjang</td>
+			<td>Action</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach($data->size as $index => $value)
+		<td>{{$index+1}}</td>
+		<td>{{$value['nama_size']}}</td>
+		<td>{{$value['lingkar_dada']}}cm</td>
+		<td>{{$value['lingkar_pinggul']}}cm</td>
+		<td>{{$value['panjang']}}cm</td>
+		<td>
+			<a href="{{url('admin/size/editForm',$value['id'])}}"><button class="btn btn-warning btn-flat">Edit</button></a>
+		</td>
+		@endforeach
+	</tbody>
 </table>
 <hr>
 @foreach($data->file_gambar as $index => $value)
@@ -106,12 +133,12 @@
        			 <h4 class="modal-title" id="myModalLabel">Tambah Ukuran</h4>
      		</div>
       		<div class="modal-body">
-				<form class="form-horizontal" method="post" action="{{url('admin/product/insertSize')}}">
+				<form class="form-horizontal" method="post" action="{{url('admin/size/insertSize')}}">
 					{{csrf_field()}}
 					<div class="form-group">
 						<label class="control-label col-md-3">Nama Ukuran</label>
 						<div class="col-md-6">
-							<input type="number" name="lingkar_dada" class="form-control" min="0" required>
+							<input type="text" name="nama_size" class="form-control" min="0" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -132,7 +159,7 @@
 							<input type="number" name="panjang" class="form-control" min="0" required>
 						</div>
 					</div>
-					<input type="hidden" name="id_product" value="{{$data['id']}}">
+					<input type="hidden" name="product_id" value="{{$data['id']}}">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger btn-flat" data-dismiss="modal">Close</button>

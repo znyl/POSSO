@@ -62,6 +62,8 @@ class productController extends Controller
     	$data = product::find($id);
         if($data->file_gambar_id==0)
             return redirect()->action('productController@detailed',$id)->with('error','Gambar utama belum dipilih');
+        if($data->size->count()<1)
+            return redirect()->action('productController@detailed',$id)->with('error','Ukuran produk belum ditambahkan');
     	$data->status_product = 1;
     	if($data->save())
     		return redirect()->action('productController@detailed',$data->id)->with('success','Data berhasil dibuka');
@@ -138,5 +140,5 @@ class productController extends Controller
         	return redirect()->action('productController@index')->with('error','Gambar tidak dapat disimpan');
     }
 
-    
+
 }

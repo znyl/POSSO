@@ -12,7 +12,10 @@ class frontController extends Controller
     //
     private $category;
 
-
+    public function test(Request $request)
+    {
+    	echo $request->submit;
+    }
     public function index()
     {
     	$category = category::all();
@@ -21,7 +24,7 @@ class frontController extends Controller
     public function product($id)
     {
     	$category = category::all();
-    	$data = product::where('category_id','=',$id)->get();
+    	$data = product::where('category_id','=',$id)->where('status_product','=',1)->get();
     	foreach($data as $index => $value)
     	{
     		$value['main_image'] = file_gambar::find($value['file_gambar_id']);
@@ -42,6 +45,9 @@ class frontController extends Controller
     {
     	$category = category::all();
     	$data = product::find($id);
+    	if($data['status_product']==0)
+    		return redirect('/');
+    	
     	$main_image = file_gambar::find($data['file_gambar_id']);
     	$data['url_main_image'] = $main_image['direktori_file'];
     	foreach($data->discount as $index => $value)
