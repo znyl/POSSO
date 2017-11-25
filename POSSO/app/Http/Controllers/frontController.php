@@ -18,12 +18,10 @@ class frontController extends Controller
     }
     public function index()
     {
-    	$category = category::all();
-    	return view('front.frontHome',compact('category'));
+    	return view('front.frontHome');
     }
     public function product($id)
     {
-    	$category = category::all();
     	$data = product::where('category_id','=',$id)->where('status_product','=',1)->get();
     	foreach($data as $index => $value)
     	{
@@ -39,11 +37,11 @@ class frontController extends Controller
     			$value['status_diskon']=false;
     	}
 
-    	return view('front.productList',compact('data','category'));
+    	return view('front.productList',compact('data'));
     }
     public function productDetailed($id)
     {
-    	$category = category::all();
+    	
     	$data = product::find($id);
     	if($data['status_product']==0)
     		return redirect('/');
@@ -62,6 +60,6 @@ class frontController extends Controller
     		}
     	}
 
-    	return view('front.productDetailed',compact('data','category'));
+    	return view('front.productDetailed',compact('data'));
     }
 }

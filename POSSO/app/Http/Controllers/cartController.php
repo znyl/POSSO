@@ -37,7 +37,7 @@ class cartController extends Controller
         
     	return view('front.cartIndex',compact('cart','category'));
     }
-    public function addCart($id, $qty, $tipe)
+    public function addCart($id, $qty, $tipe, $size)
     {
         $data = session('shopping_cart');
         if($data==null)
@@ -45,20 +45,15 @@ class cartController extends Controller
             
             $data=array();
         }
-        $data[$id]=$qty;
-        $data[$id]['transaksi']=$tipe;
-        if($data[$id]==0)
+        $data[$tipe][$id][$size]=$qty;
+        if($data[$tipe][$id][$size]==0)
         {
 
-            unset($data[$id]);
+            unset($data[$tipe][$id][$size]);
         }
         session(['shopping_cart'=>$data]);
         return redirect('/cart');
     }
-    public function removeCart($id)
-    {
-    	unset($data[$id]);
-    	return redirect('/cart');
-    }
+    
 
 }
