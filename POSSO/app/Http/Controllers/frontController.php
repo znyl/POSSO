@@ -14,7 +14,10 @@ class frontController extends Controller
 
     public function test(Request $request)
     {
-    	echo $request->submit;
+    	if($request->submit=="Sewa")
+            echo "Sewa Bos";
+        else if($request->submit=="Beli")
+            echo "beli bos";
     }
     public function index()
     {
@@ -52,7 +55,7 @@ class frontController extends Controller
     	{
     		if($index==1)
     		{
-
+                
     		}
     		else if($index==2)
     		{
