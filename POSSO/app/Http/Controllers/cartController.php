@@ -5,6 +5,7 @@ use App\product;
 use App\discount;
 use App\category;
 use App\file_gambar;
+use App\size;
 use Illuminate\Http\Request;
 
 class cartController extends Controller
@@ -12,46 +13,52 @@ class cartController extends Controller
     //
     public function index()
     {
-    	$category = category::all();
+    	
     	$cart = array();
+        $index=0;
     	if(session('shopping_cart')!=null)
     	{
-	    	foreach(session('shopping_cart') as $index =>$value)
+	    	foreach(session('shopping_cart') as $tipe => $value)
 	        {
-	            $get=product::find($index);
-	            $get['qty']=$value;
-	            $get['main_image'] = file_gambar::find($get['file_gambar_id']);
-	            if($get->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->count()>0)
-	    		{
-	    			
-	    			$diskon = $get->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->get();
-	    			$get['diskon']= $diskon;
-	    			$get['status_diskon'] = true;
-	    		}
-	    		else
-	    			$get['status_diskon']=false;
-	            array_push($cart,$get);
+	            foreach ($value as $product_id => $value2) 
+                {
+                    $get=product::find($product_id);
+                    foreach($value2 as $size => $qty)
+                    {
+                        $get['size']=size::find($size);
+                        $get['qty']=$qty;
+                        $get['tipe']=$tipe;
+                        array_push($cart,$get);
+                    }   
+                }
+               
 	        }	
     	}
 	    	
         
-    	return view('front.cartIndex',compact('cart','category'));
+    	return view('front.cartIndex',compact('cart'));
     }
-    public function addCart($id, $qty, $tipe, $size)
+    public function addCart(Request $request)
     {
+
         $data = session('shopping_cart');
         if($data==null)
         {
             
             $data=array();
         }
-        $data[$tipe][$id][$size]=$qty;
-        if($data[$tipe][$id][$size]==0)
+        
+
+        $data[$request->submit][$request->product_id][$request->size]=$request->qty;
+
+        if($data[$request->submit][$request->product_id][$request->size]==0)
         {
 
-            unset($data[$tipe][$id][$size]);
+            unset($data[$request->submit][$request->product_id][$request->size]);
         }
-        session(['shopping_cart'=>$data]);
+        if($request->qty<1)
+            return redirect()->back();
+        
         return redirect('/cart');
     }
     
