@@ -20,6 +20,8 @@ Route::get('/product/category/{id}','frontController@product');
 Route::get('/product/detailed/{id}','frontController@productDetailed');
 Route::get('/MUA/profile','frontController@mua');
 Route::post('/addCart','cartController@addCart');
+Route::post('/refreshCart','cartController@refreshCart');
+Route::post('/deleteCart','cartController@deleteCart');
 Route::get('/cart','cartController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');

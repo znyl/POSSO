@@ -56,10 +56,39 @@ class cartController extends Controller
 
             unset($data[$request->submit][$request->product_id][$request->size]);
         }
+        session(['shopping_cart'=>$data]);
         if($request->qty<1)
             return redirect()->back();
         
+        
         return redirect('/cart');
+    }
+
+    public function refreshCart(Request $request)
+    {
+        
+        $data = session('shopping_cart');
+        if($data==null)
+        {
+            
+            $data=array();
+        }
+        
+
+        $data[$request->tipe][$request->product_id][$request->size]=$request->qty;
+
+        if($data[$request->tipe][$request->product_id][$request->size]==0)
+        {
+
+            unset($data[$request->tipe][$request->product_id][$request->size]);
+        }
+        session(['shopping_cart'=>$data]);
+        return redirect('/cart');
+    }
+
+    public function deleteCart(Request $request)
+    {
+
     }
     
 
