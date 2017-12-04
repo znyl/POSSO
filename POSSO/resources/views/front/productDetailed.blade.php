@@ -56,35 +56,65 @@ model-banner
                                 <p>Harga Sewa</p>
                                 <p>Tipe Produk</p>
                                 <p>Desainer</p>
-                                <p>Lingkar Dada</p>
-                                <p>Lingkar Pinggul</p>
-                                <p>Panjang:</p>
+                               
                             </div>
+
                             <div class="col-md-6 col-xs-6 text-left">
                                 <p class="@if($data['status_diskon']) line-through @endif">: Rp. {{number_format($data['harga_product'],0,",",".")}} @if($data['status_diskon']) <span class="badge">{{$data['diskon']['discount']}}% Off</span> Rp. {{number_format($data['diskon']['harga_diskon'],0,",",".")}} @endif </p>
-                                <p>: Rp. {{number_format($data['harga_sewa_product'])}}</p>
+                                <p>: Rp. {{number_format($data['harga_sewa_product'],0,",",".")}}</p>
                                 <p>: {{$data->category['nama_category']}}</p>
                                 <p>: {{$data['designer_product']}}</p>
-                                <p id="lingkar_dada">: {{$data->size->first()->lingkar_dada}} cm</p>
-                                <p id="lingkar_pinggul">: {{$data->size->first()->lingkar_pinggul}} cm</p>
-                                <p id="panjang">: {{$data->size->first()->panjang}} cm</p>
+                                
                             </div>
 
                             <div class="col-md-12 text-left">
+                            <br>
+                                <table class="table table-bordered table-condensed table-hover">
+                                    <thead>
+                                        <tr>
+                                            <td>Size</td>
+                                            <td>Lingkar Dada (cm)</td>
+                                            <td>Lingkar Pinggul (cm)</td>
+                                            <td>Panjang (cm)</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($data->size as $index => $value)
+                                        <tr>
+                                            <td>{{$value['nama_size']}}</td>
+                                            <td>{{$value['lingkar_dada']}}</td>
+                                            <td>{{$value['lingkar_pinggul']}}</td>
+                                            <td>{{$value['panjang']}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             <hr>
-                            <!-- <form method="post" action="/test" class="form-horizontal">
-                                <div class="form-group">
+                                <form method="post" action="/addCart" class>
                                 {{csrf_field()}}
-                                <select class="form-control">
-                                    @foreach($data->size as $index => $value)
-                                    <option value="{{$value['id']}}">{{$value['nama_size']}}</option>
-                                    @endforeach
-                                </select>
-                                </div>
-                                <input class="btn btn-default" type="submit" name="submit" value="Beli">
-                                <input class="btn btn-default" type="submit" name="submit" value="Sewa">
-                            </form> -->
-                            <button class="btn btn-default" data-toggle="modal" data-target="#MasterModal">TEST</button>
+                                    <input type="hidden" name="product_id" value="{{$data['id']}}">
+                                    <div class='col-sm-6'>
+                                        <div class="form-group">
+                                            <label>Qty.</label>
+                                            <input type="text" name="qty" class="form-control" min="0" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Size</label>
+                                            <select class="form-control" name="size">
+                                                @foreach($data->size as $index => $value)
+                                                <option value="{{$value['id']}}">{{$value['nama_size']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                    <input class="btn btn-default" type="submit" name="submit" value="Beli">
+                                    <input class="btn btn-default" type="submit" name="submit" value="Sewa">
+                                    </div>
+                                </form>
+                                
                             </div>
                         </div>
                     </div>
