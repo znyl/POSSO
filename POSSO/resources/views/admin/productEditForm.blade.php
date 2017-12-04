@@ -45,30 +45,6 @@ Edit {{$data['nama_product']}}
 			<input type="number" name="harga_sewa_product" class="form-control" required value="{{$data['harga_sewa_product']}}">
 		</div>
 	</div>
-	<div class="form-group">
-		<label class="control-label col-md-3">Lingkar Dada (cm)</label>
-		<div class="col-md-6">
-			<input type="number" name="lingkar_dada" class="form-control" min="0" value="{{$data['lingkar_dada']}}" required>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-md-3">Lingkar Pinggul (cm)</label>
-		<div class="col-md-6">
-			<input type="number" name="lingkar_pinggul" class="form-control" min="0" value="{{$data['lingkar_pinggul']}}" required>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-md-3">Panjang (cm)</label>
-		<div class="col-md-6">
-			<input type="number" name="panjang" class="form-control" min="0" value="{{$data['panjang']}}" required>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="control-label col-md-3">Keterangan</label>
-		<div class="col-md-6">
-			<textarea class="form-control" name="deskripsi_product" value="{{$data['deskripsi_product']}}">{!! $data['deskripsi_product'] !!}</textarea>
-		</div>
-	</div>
 
 @stop
 @section('box-footer')

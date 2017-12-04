@@ -104,10 +104,6 @@ class productController extends Controller
     	$insert->nama_product = $request->nama_product;
     	$insert->harga_product = $request->harga_product;
     	$insert->designer_product = $request->designer_product;
-    	$insert->lingkar_dada = $request->lingkar_dada;
-    	$insert->lingkar_pinggul = $request->lingkar_pinggul;
-    	$insert->panjang = $request->panjang;
-    	$insert->deskripsi_product = $request->deskripsi_product;
     	$insert->category_id = $request->category_id;
     	if($insert->save())
     		return redirect()->action('productController@index')->with('success','Data berhasil diubah');
