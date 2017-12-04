@@ -47,9 +47,13 @@ class productController extends Controller
             }
             
         }
-        else
+        if(!isset($diskon['status_jual']))
         {
             $diskon['status_jual']=false;
+            
+        }
+        if(!isset($diskon['status_sewa']))
+        {
             $diskon['status_sewa']=false;
         }
         
