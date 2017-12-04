@@ -15,8 +15,9 @@ model-banner
 		<table class="table table-border">
 			<thead>
 				<tr>
-					<td>#</td>
+					
 					<td>Product</td>
+					<td>Ukuran</td>
 					<td>Tipe Transaksi</td>
 					<td>Qty.</td>
 					<td>Harga</td>
@@ -25,9 +26,10 @@ model-banner
 			</thead>
 			<tbody>
 				@foreach($cart as $index => $value)
-				<td>{{$index+1}}</td>
+				
 				<td>{{$value['nama_product']}}</td>
-				<td></td>
+				<td>{{$value['size']->nama_size}}
+				<td>{{$value['tipe']}}</td>
 				<td> 
 					@if($value['qty']>0) <button class="btn btn-small"><i class="fa fa-minus"></i></button> @endif
 					<div class="col-md-2 col-sm-2 col-xs-2"><input type="number" class="form-control" value="{{$value['qty']}}"></div>
