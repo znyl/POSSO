@@ -27,7 +27,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{url('/')}}">
 
                 <img src="{{asset('image/logo/logo-white.png')}}" class="logo logo-display img-fluid" alt="">
                 <img src="{{asset('image/logo/logo-black.png')}}" class="logo logo-scrolled img-fluid" alt="">
