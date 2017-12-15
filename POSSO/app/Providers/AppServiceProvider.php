@@ -15,9 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
-        view()->composer('front.layoutNavbar', function($view) {
-            $view->with('category', \App\category::all());
-        });
+        
 
     }
 
