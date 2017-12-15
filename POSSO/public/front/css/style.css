@@ -27,7 +27,19 @@ Author URI: http://xpeedstudio.com
 {
 height: 70px;
 }
+.hide-cells{
+    empty-cells: hide;
+}
+.table > tbody > tr > td
+{
+    vertical-align: middle;
 
+}
+
+.cart-image{
+    height: 150px;
+    width: 150px;
+}
 .product-container
 {
     padding-top:10px; 
