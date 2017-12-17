@@ -48,21 +48,33 @@ class frontController extends Controller
     	$data = product::find($id);
     	if($data['status_product']==0)
     		return redirect('/');
+        if($data->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi','1')->count()>0)
+        {
+            $data['status_diskon_jual']=true;
+            $data['diskon_jual']=$data->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi','1')->first();
+        }
+        else
+            $data['status_diskon_jual']=false;
+        if($data->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi','2')->count()>0)
+        {
+            $data['status_diskon_sewa']=true;
+            $data['diskon_sewa']=$data->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi','2')->first();
+        }
+        else
+            $data['status_diskon_sewa']=false;
     	
     	$main_image = file_gambar::find($data['file_gambar_id']);
     	$data['url_main_image'] = $main_image['direktori_file'];
-    	foreach($data->discount as $index => $value)
-    	{
-    		if($index==1)
-    		{
-                
-    		}
-    		else if($index==2)
-    		{
-    			
-    		}
-    	}
+    	
 
     	return view('front.productDetailed',compact('data'));
+    }
+    public function checkOutForm()
+    {
+        return view('front.formCheckOutOrder');
+    }
+    public function customOrderForm()
+    {
+        return view('front.formCustomOrder');
     }
 }
