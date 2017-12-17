@@ -38,6 +38,6 @@ class frontViewComposerServiceProvider extends ServiceProvider
     }
     private function composeCart()
     {
-        view()->composer(['front.layoutNavbar','front.cartIndex'], 'App\Http\Composers\CartComposer');
+        view()->composer(['front.layoutNavbar','front.cartIndex','front.formCheckOutOrder'], 'App\Http\Composers\CartComposer');
     }
 }
