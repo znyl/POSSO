@@ -23,6 +23,8 @@ Route::post('/addCart','cartController@addCart');
 Route::post('/refreshCart','cartController@refreshCart');
 Route::post('/deleteCart','cartController@deleteCart');
 Route::get('/cart','cartController@index');
+Route::get('/checkout','frontController@checkOutForm');
+Route::get('/custom','frontController@customOrderForm');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
