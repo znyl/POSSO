@@ -53,7 +53,7 @@
                     </ul>
                 </li>							                   
                 <li><a href="">Information</a></li> 							
-                <li><a href="">custom order</a></li>                                    
+                <li><a href="{{url('custom')}}">custom order</a></li>                                    
                 <li><a href="">contact</a></li>                    
             </ul>
         </div><!-- /.navbar-collapse -->
