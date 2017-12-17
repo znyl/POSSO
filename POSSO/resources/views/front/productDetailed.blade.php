@@ -60,7 +60,7 @@ model-banner
                             </div>
 
                             <div class="col-md-6 col-xs-6 text-left">
-                                <p class="@if($data['status_diskon']) line-through @endif">: Rp. {{number_format($data['harga_product'],0,",",".")}} @if($data['status_diskon']) <span class="badge">{{$data['diskon']['discount']}}% Off</span> Rp. {{number_format($data['diskon']['harga_diskon'],0,",",".")}} @endif </p>
+                                <p class="@if($data['status_diskon_jual']) line-through @endif">: Rp. {{number_format($data['harga_product'],0,",",".")}} @if($data['status_diskon_jual']) <span class="badge">{{$data['diskon_jual']['discount']}}% Off</span> Rp. {{number_format($data['diskon_jual']['harga_diskon'],0,",",".")}} @endif </p>
                                 <p>: Rp. {{number_format($data['harga_sewa_product'],0,",",".")}}</p>
                                 <p>: {{$data->category['nama_category']}}</p>
                                 <p>: {{$data['designer_product']}}</p>
@@ -110,11 +110,33 @@ model-banner
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                    <input class="btn btn-default" type="submit" name="submit" value="Beli">
+                                        <input class="btn btn-default" type="submit" name="submit" value="Beli">
+                                    
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-12 text-left">
+                                
+                            <hr>
+                                <form method="post" action="/addCart" class>
+                                {{csrf_field()}}
+                                    <input type="hidden" name="product_id" value="{{$data['id']}}">
+                                    <div class='col-sm-6'>
+                                        <div class="form-group">
+                                            <label>Tgl. Pengambilan</label>
+                                            <input type="date" name="tgl_mulai" class="form-control" min="{{date('Y-m-d')}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Tgl. Pengembalian</label>
+                                            <input type="date" name="tgl_mulai" class="form-control" min="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
                                     <input class="btn btn-default" type="submit" name="submit" value="Sewa">
                                     </div>
                                 </form>
-                                
                             </div>
                         </div>
                     </div>
