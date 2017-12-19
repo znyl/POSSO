@@ -11,4 +11,8 @@ class discount extends Model
     {
     	return $this->belongsTo('App\product','product_id');
     }
+    public function order_detail()
+    {
+    	return $this->hasMany('App\order_detail','diskon_id');
+    }
 }
