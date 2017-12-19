@@ -130,7 +130,17 @@ model-banner
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Tgl. Pengembalian</label>
-                                            <input type="date" name="tgl_mulai" class="form-control" min="" required>
+                                            <input type="date" name="tgl_akhir" class="form-control" min="{{date('Y-m-d')}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Size</label>
+                                            <select class="form-control" name="size">
+                                                @foreach($data->size as $index => $value)
+                                                <option value="{{$value['id']}}">{{$value['nama_size']}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

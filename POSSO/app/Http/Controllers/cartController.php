@@ -13,6 +13,7 @@ class cartController extends Controller
     //
     public function index()
     {
+        
     		
     	return view('front.cartIndex');
     }
@@ -26,8 +27,14 @@ class cartController extends Controller
             $data=array();
         }
         
-
-        $data[$request->submit][$request->product_id][$request->size]=$request->qty;
+        if($request->submit == "Beli")
+            $data[$request->submit][$request->product_id][$request->size]=$request->qty;
+        else if ($request->submit == "Sewa")
+        {
+            $data[$request->submit][$request->product_id][$request->size]['tgl_mulai']=$request->tgl_mulai;
+            $data[$request->submit][$request->product_id][$request->size]['tgl_akhir']=$request->tgl_akhir;
+            $data[$request->submit][$request->product_id][$request->size]=1;
+        }
 
         if($data[$request->submit][$request->product_id][$request->size]==0)
         {

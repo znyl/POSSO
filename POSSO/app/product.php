@@ -23,4 +23,12 @@ class product extends Model
     {
         return $this->hasMany('App\size','product_id');
     }
+    public function product_rent()
+    {
+        return $this->hasMany('App\product_rent','product_id');
+    }
+    public function order_detail()
+    {
+        return $this->hasMany('App\order_detail','product_id');
+    }
 }

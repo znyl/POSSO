@@ -49,6 +49,7 @@ model-banner
 						
 					</td>
 					<td>Rp. @if($value['diskon_status']) {{number_format($value['diskon']->harga_diskon,0,",",".")}} @else {{number_format($value['harga_product'],0,",",".")}} @endif</td>
+					
 					<td>Rp. @if($value['diskon_status']) {{number_format($value['diskon']->harga_diskon*$value['qty'],0,",",".")}} @else {{number_format($value['harga_product']*$value['qty'],0,",",".")}} @endif</td>
 					</tr>
 					@endforeach
@@ -69,7 +70,7 @@ model-banner
 				</table>
 			</div>
 		</div>
-		<a href="{{url('/checkout')}}"><button class="btn btn-default">Check Out!</button></a>
+		<a href="{{url('/formCheckout')}}"><button class="btn btn-default">Check Out!</button></a>
 		<hr>
 	</div>
 </section>

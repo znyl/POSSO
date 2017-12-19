@@ -46,19 +46,19 @@ model-banner
 				</tbody>
 			</table>
 		</div>
-		<form method="post" action="/addCart" class>
+		<form method="post" action="/checkout" class>
 			{{csrf_field()}}
 			<div class="row">
 				<div class='col-sm-6'>
 				    <div class="form-group">
 				        <label>Nama Lengkap</label>
-				        <input type="text" name="nama" class="form-control" min="0" required>
+				        <input type="text" name="nama" class="form-control" required>
 				    </div>
 				</div>
 				<div class='col-sm-6'>
 				    <div class="form-group">
 				        <label>Alamat</label>
-				        <input type="text" name="alamat" class="form-control" min="0" required>
+				        <input type="text" name="alamat" class="form-control" required>
 				    </div>
 				</div>
 				<div class="col-sm-6">
