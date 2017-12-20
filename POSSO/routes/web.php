@@ -23,7 +23,7 @@ Route::get('/MUA/profile','frontController@mua');
 //shopping cart
 Route::post('/addCart','cartController@addCart');
 Route::post('/refreshCart','cartController@refreshCart');
-Route::post('/deleteCart','cartController@deleteCart');
+Route::get('/deleteCart/{tipe}/{product}/{size}','cartController@deleteCart');
 Route::get('/cart','cartController@index');
 //shopping cart end
 
@@ -31,6 +31,7 @@ Route::get('/cart','cartController@index');
 Route::get('/formCheckout','frontController@checkOutForm');
 Route::post('/checkout','checkOutController@orderCheckout');
 
+Route::post('/customOrder/insert','checkOutController@customOrderCheckout');
 Route::get('/formCustom','frontController@customOrderForm');
 //checkout order end
 
