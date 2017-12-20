@@ -20,12 +20,17 @@ class CartComposer  {
                     {
                     	$get['gambar']=\App\file_gambar::find($get['file_gambar_id']);
                         $get['size']=\App\size::find($size);
-                        $get['qty']=$qty;
+                        $get['qty']=$qty['qty'];
                         $get['tipe']=$tipe;
                         if($tipe=="Beli")
                             $tipediskon= 1;
                         else if($tipe=="Sewa")
+                        {
                             $tipediskon=2;
+                            $get['tgl_mulai']=$qty['tgl_mulai'];
+                            $get['tgl_akhir']=$qty['tgl_akhir'];
+                            
+                        }
                         if($get->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->count()>0)
                         {
                             $get['diskon'] = \App\discount::where('product_id',$get->id)->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->first();
