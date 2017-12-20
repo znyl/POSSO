@@ -1,6 +1,6 @@
 @extends('front.layoutFront')
 @section('page-title')
-Shopping Cart
+Custom Order
 @stop
 @section('banner-image')
 {{asset('image/banner/5d.jpg')}}
@@ -10,7 +10,7 @@ model-banner
 @stop
 @section('content')
 <div class="container margin-top-60">
-	<form method="post" action="/addCart" class>
+	<form method="post" action="/addCart" enctype="multipart/form-data" class>
 		{{csrf_field()}}
 		<div class="row">
 			<div class='col-sm-6'>
@@ -40,14 +40,20 @@ model-banner
 			<div class="col-sm-6">
 				<div class="form-group">
 					<label>Keterangan</label>
-					<textarea class="form-control"></textarea>
+					<textarea class="form-control" name="keterangan"></textarea>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>Contoh Gambar</label>
+					<input type="file" name="gambar" class="form-control">
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
 				<div class="form-group">
-					<input type="submit" name="submit" class="btn btn-default" value="Check Out">
+					<input type="submit" name="submit" class="btn btn-default" value="Submit">
 				</div>
 			</div>
 			</div>
