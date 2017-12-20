@@ -32,26 +32,42 @@ model-banner
 					</td>
 					</td>
 					<td>{{$value['size']->nama_size}}</td>
-					<td>{{$value['tipe']}}</td>
+					<td>{{$value['tipe']}} {{$value['tgl_mulai']}}</td>
 					<td> 
 						<form action="/refreshCart" method="post">
 							{{csrf_field()}}
 							<input type="hidden" name="product_id" value="{{$value['id']}}">
 							<input type="hidden" name="size" value="{{$value['size']->id}}">
 							<input type="hidden" name="tipe" value="{{$value['tipe']}}">
-							<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								@if($value['tipe']=="Beli")
 								<input name="qty" type="number" class="form-control" value="{{$value['qty']}}"  required>
+								@elseif($value['tipe']=="Sewa")
+								<input type="date" class="form-control" name="tgl_mulai" value="{{date('Y-m-d',strtotime($value['tgl_mulai']))}}" min="{{date('Y-m-d')}}">
+								<br>
+								<input type="date" class="form-control" name="tgl_akhir" value="{{date('Y-m-d',strtotime($value['tgl_akhir']))}}" min="{{date('Y-m-d')}}">
+								@endif
 							</div>
 
 							<button class="btn btn-small"><i class="fa fa-refresh"></i></button>
-							<button class="btn btn-small" type="button"><i class="fa fa-trash"></i></button>
+							<a href="{{url('/deleteCart',[$value['tipe'],$value['id'],$value['size']])}}"><button class="btn btn-small" type="button"><i class="fa fa-trash"></i></button></a>
 						</form>
 						
 					</td>
+					@if($value['tipe']=="Beli")
+
 					<td>Rp. @if($value['diskon_status']) {{number_format($value['diskon']->harga_diskon,0,",",".")}} @else {{number_format($value['harga_product'],0,",",".")}} @endif</td>
 					
 					<td>Rp. @if($value['diskon_status']) {{number_format($value['diskon']->harga_diskon*$value['qty'],0,",",".")}} @else {{number_format($value['harga_product']*$value['qty'],0,",",".")}} @endif</td>
 					</tr>
+
+					@elseif($value['tipe']=="Sewa")
+
+					<td>Rp. @if($value['diskon_status']) {{number_format($value['diskon']->harga_diskon,0,",",".")}} @else {{number_format($value['harga_sewa_product'],0,",",".")}} @endif</td>
+					
+					<td>Rp. @if($value['diskon_status']) {{number_format($value['diskon']->harga_diskon*$value['qty'],0,",",".")}} @else {{number_format($value['harga_sewa_product']*$value['qty'],0,",",".")}} @endif</td>
+					</tr>
+					@endif
 					@endforeach
 					
 				</tbody>
