@@ -71,10 +71,12 @@ class frontController extends Controller
     }
     public function checkOutForm()
     {
+        
         return view('front.formCheckOutOrder');
     }
     public function customOrderForm()
     {
-        return view('front.formCustomOrder');
+        $category = category::all();
+        return view('front.formCustomOrder', compact('category'));
     }
 }
