@@ -47,7 +47,7 @@ class CartComposer  {
                         	if($tipe == "Beli")
                             	$total+= $get->harga_product * $get['qty'];
                             else if ($tipe=="Sewa")
-                            	$total+= $get->harga_sewa_product;
+                            	$total+= $get->harga_sewa_product*$get['qty'];
                         }
 
                         
