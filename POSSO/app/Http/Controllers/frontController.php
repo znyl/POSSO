@@ -71,7 +71,8 @@ class frontController extends Controller
     }
     public function checkOutForm()
     {
-        
+        if(session('shopping_cart')==null)
+            return redirect()->back();   
         return view('front.formCheckOutOrder');
     }
     public function customOrderForm()
