@@ -14,7 +14,7 @@ class cartController extends Controller
     public function index()
     {
         
-    		
+    	
     	return view('front.cartIndex');
     }
     public function addCart(Request $request)
@@ -28,7 +28,7 @@ class cartController extends Controller
         }
         
         if($request->submit == "Beli")
-            $data[$request->submit][$request->product_id][$request->size]=$request->qty;
+            $data[$request->submit][$request->product_id][$request->size]['qty']=$request->qty;
         else if ($request->submit == "Sewa")
         {
             $data[$request->submit][$request->product_id][$request->size]['tgl_mulai']=$request->tgl_mulai;
