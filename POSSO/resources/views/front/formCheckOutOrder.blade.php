@@ -48,6 +48,8 @@ model-banner
 		</div>
 		<form method="post" action="/checkout" class>
 			{{csrf_field()}}
+			<input type="hidden" name="total" value="{{$total}}">
+			
 			<div class="row">
 				<div class='col-sm-6'>
 				    <div class="form-group">
@@ -76,7 +78,7 @@ model-banner
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label>Keterangan</label>
-						<textarea class="form-control"></textarea>
+						<textarea class="form-control" name="keterangan"></textarea>
 					</div>
 				</div>
 			</div>
