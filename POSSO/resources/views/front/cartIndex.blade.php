@@ -26,7 +26,7 @@ model-banner
 				<tbody>
 					@foreach($cart as $index => $value)
 					<tr>
-					<td><a href="#" class="photo"><img src="{{asset($value['gambar']->direktori_file)}}" class="cart-image"></a></td>
+					<td><a href="{{url('product/detailed',$value['id'])}}" class="photo"><img src="{{asset($value['gambar']->direktori_file)}}" class="cart-image"></a></td>
 					<td>
 					{{$value['nama_product']}}
 					</td>
