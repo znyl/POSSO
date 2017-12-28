@@ -8,5 +8,8 @@ class custom_order extends Model
 {
     //
     protected $table = 'custom_order';
-    
+    public function file_gambar()
+    {
+    	return $this->belongsTo('App\file_gambar','image_ref_id');
+    }
 }
