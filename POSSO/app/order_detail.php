@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class order_detail extends Model
 {
     //
-    protected $table = 'order_detail';
+    protected $table = 'order_details';
     public function order()
     {
     	return $this->belongsTo('App\order','order_id');
@@ -23,5 +23,9 @@ class order_detail extends Model
     public function size()
     {
     	return $this->belongsTo('App\size','size_id');
+    }
+    public function product_rent()
+    {
+        return $this->hasOne('App\product_rent','order_detail_id');
     }
 }
