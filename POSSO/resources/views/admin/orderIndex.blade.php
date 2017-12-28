@@ -21,7 +21,27 @@ List Order
 		</tr>
 	</thead>
 	<tbody>
-		
+		@foreach($data as $index => $value)
+		<tr>
+			<td>{{$index+1}}</td>
+			<td><a href="{{url('admin/order',$value['id'])}}">{{$value['kode_order']}}</a></td>
+			<td>{{$value['nama_konsumen']}}</td>
+			<td>{{$value['email_konsumen']}}</td>
+
+			@if($value['status']==1)
+			<td>Belum Diproses</td>
+			@elseif($value['status']==2)
+			<td>Telah Dikonfirmasi</td>
+			@elseif($value['status']==3)
+			<td>Telah Dikirim</td>
+			@endif
+			<td>{{$value['created_at']}}</td>
+			<td>{{number_format($value['total'])}}</td>
+			<td></td>
+
+		</tr>
+		@endforeach
 	</tbody>
 </table>
 @stop
+
