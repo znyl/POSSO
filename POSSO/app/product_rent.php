@@ -13,7 +13,7 @@ class product_rent extends Model
     {
     	return $this->belongsTo('App\product','product_id');
     }
-    public function order_detai;()
+    public function order_detail()
     {
     	return $this->belongsTo('App\order_detail','order_detail_id');
     }
