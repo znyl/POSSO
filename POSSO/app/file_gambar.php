@@ -12,4 +12,8 @@ class file_gambar extends Model
     {
     	return $this->belongsTo('App/product','product_id');
     }
+    public function custom_order()
+    {
+    	return $this->hasOne('App\custom_order','image_ref_id');
+    }
 }
