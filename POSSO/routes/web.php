@@ -66,6 +66,10 @@ Route::get('/admin/size/editForm/{id}','productSizeController@edit');
 Route::post('/admin/size/updateSize','productSizeController@update');
 
 Route::get('/admin/order/index','orderController@index');
+Route::get('/admin/order/{id}','orderController@detailed');
+Route::get('/admin/order/{id}/{status}','orderController@statusChange');
+Route::get('/admin/order/delete/{id}','orderController@deleteItem');
+
 
 
 
