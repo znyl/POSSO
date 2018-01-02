@@ -69,7 +69,8 @@ Route::get('/admin/order/index','orderController@index');
 Route::get('/admin/order/{id}','orderController@detailed');
 Route::get('/admin/order/{id}/{status}','orderController@statusChange');
 Route::get('/admin/order/delete/{id}','orderController@deleteItem');
-
+Route::get('/admin/order/deleteOrder/{id}','orderController@deleteOrder');
+Route::get('/admin/order/rent/taken/{id}','orderController@rentTaken');
 
 
 

@@ -35,8 +35,35 @@
 	</tr>
 	<tr>
 		<td>Status</td>
-		<td><button class="btn btn-flat btn-primary" disabled>Belum diproses</button></td>
+		@if($data['status']==1)
+		<td><button class="btn btn-flat btn-primary">Belum diproses</button></td>
+		@elseif($data['status']==2)
+		<td><button class="btn btn-flat btn-warning">Sedang Diproses</button></td>
+		@elseif($data['status']==3)
+		<td><button class="btn btn-flat btn-info">Order dalam proses pengiriman</button></td>
+		@elseif($data['status']==4)
+		<td><button class="btn btn-flat btn-success">Order telah selesai</button></td>
+		@elseif($data['status']==0)
+		<td><button class="btn btn-flat btn-danger">Order Dibatalkan</button></td>
+		@endif
 	</tr>
+	@if($data['status']!=0 && $data['status']!=4)
+	<tr>
+		<td>Action</td>
+		<td>
+			@if($data['status']==1)
+			<a href="{{ url('admin/order',[$data['id'],2]) }}"><button class="btn btn-flat btn-warning">Proses Order</button></a>
+			@elseif($data['status']==2)
+			<a href="{{ url('admin/order',[$data['id'],3]) }}"><button class="btn btn-flat btn-info">Kirim Order</button></a>
+			@elseif($data['status']==3)
+			<a href="{{ url('admin/order',[$data['id'],4]) }}"><button class="btn btn-flat btn-success">Order Selesai</button></a>
+			@endif
+			@if($data['status']!=0 && $data['status']<3)
+			<a href="{{ url('admin/order',[$data['id'],0]) }}"><button class="btn btn-danger btn-flat">Batalkan</button></a>
+			@endif
+		</td>
+	</tr>
+	@endif
 </table>
 <hr>
 <br>
@@ -61,7 +88,20 @@
 			<td>{{$value['qty']}}</td>
 			<td>{{number_format($value['total_harga'])}}</td>
 			<td>{{number_format($value['total'])}}</td>
-			<td></td>
+			<td>
+				@if($data['status']!=0 && $data['status']<3)
+					@if($value->tipe_transaksi==2)
+						@if($value->product_rent->status==1)
+							<a href=""><button class="btn btn-flat btn-success">Dikembalikan</button></a>
+						@elseif($value->product->status==0)
+							<!-- <a href=""><button class="btn btn-flat btn-primary">Barang Diambil</button></a> -->
+							<a href="{{url('/admin/order/delete',$value['id'])}}"><button class="btn btn-danger btn-flat">Hapus</button></a>
+						@endif
+					@else
+					<a href="{{url('/admin/order/delete',$value['id'])}}"><button class="btn btn-danger btn-flat">Hapus</button></a>
+					@endif
+				@endif
+			</td>
 		</tr>
 		@endforeach
 	</tbody>

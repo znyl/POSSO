@@ -28,10 +28,22 @@ class orderController extends Controller
     	if($status<=$order->status && $status !=0 && $status!=$order->status+1)
     		return redirect()->action('orderController@detailed',$id)->with('error','Status salah, status tidk dapat diubah');
     	$order->status = $status;
+    	$order->save();
     	return redirect()->action('orderController@detailed',$id)->with('success','Status berhasil diubah');
     }
     public function deleteItem($id)
     {
+    	$detail = order_detail::find($id);
+    	$order = order::find($detail->order_id);
+    	$order->total = $order->total-$detail->total;
+    	$detail->delete();
+    	$order->save();
+    	return redirect()->action('orderController@detailed',$order->id)->with('success','Item berhasil dihapus');
+    }
+
+    public function rentTaken($id)
+    {
     	
     }
+
 }
