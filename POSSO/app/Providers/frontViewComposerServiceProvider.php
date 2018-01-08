@@ -30,7 +30,7 @@ class frontViewComposerServiceProvider extends ServiceProvider
 
     private function composeNavbarCategory()
     {
-        view()->composer('front.layoutNavbar', function($view) {
+        view()->composer(['front.layoutNavbar','front.frontHome'], function($view) {
             $category = \App\category::all();
             
             $view->with(compact('category'));

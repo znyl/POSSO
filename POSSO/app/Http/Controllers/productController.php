@@ -123,13 +123,13 @@ class productController extends Controller
     {
     	
     	$fileName = $request->file('gambar')->getClientOriginalName();
-        $destinationPath = public_path()."/image/product/";
-        if(file_gambar::where('nama_file','=',$fileName)->count()>0)
+        $destinationPath = public_path()."/image/product/".$request->id_product."/";
+        if(file_gambar::where('nama_file','=',$fileName)->where('product_id','=',$request->id_product)->count()>0)
             return redirect()->action('productController@detailed',$request->id_product)->with('error','Nama file sudah ada');
         if($request->file('gambar')->move($destinationPath, $fileName))
         {
             $insert_gambar = new file_gambar;
-            $insert_gambar->direktori_file = '/image/product/'.$fileName;
+            $insert_gambar->direktori_file = '/image/product/'.$request->id_product."/".$fileName;
             $insert_gambar->nama_file = $fileName;
             $insert_gambar->product_id = $request->id_product;
             if($insert_gambar->save())

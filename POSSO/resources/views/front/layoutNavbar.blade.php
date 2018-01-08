@@ -54,7 +54,7 @@
                 </li>							                   
                 <li><a href="">Information</a></li> 							
                 <li><a href="{{url('formCustom')}}">custom order</a></li>                                    
-                <li><a href="">contact</a></li>                    
+                <li><a href="{{url('contactUs')}}">contact</a></li>                    
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>  

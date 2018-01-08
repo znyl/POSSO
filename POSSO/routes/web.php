@@ -19,6 +19,7 @@ Route::get('/','frontController@index');
 Route::get('/product/category/{id}','frontController@product');
 Route::get('/product/detailed/{id}','frontController@productDetailed');
 Route::get('/MUA/profile','frontController@mua');
+Route::get('/contactUs','frontController@contactUs');
 
 //shopping cart
 Route::post('/addCart','cartController@addCart');
@@ -66,11 +67,15 @@ Route::get('/admin/size/editForm/{id}','productSizeController@edit');
 Route::post('/admin/size/updateSize','productSizeController@update');
 
 Route::get('/admin/order/index','orderController@index');
+Route::get('/admin/order/delivered','orderController@delivered');
+Route::get('/admin/order/rent','orderController@rent');
+Route::get('/admin/order/all','orderController@all');
 Route::get('/admin/order/{id}','orderController@detailed');
 Route::get('/admin/order/{id}/{status}','orderController@statusChange');
 Route::get('/admin/order/delete/{id}','orderController@deleteItem');
 Route::get('/admin/order/deleteOrder/{id}','orderController@deleteOrder');
-Route::get('/admin/order/rent/taken/{id}','orderController@rentTaken');
+Route::get('/admin/order/rent/sent/{id}','orderController@rentSent');
+Route::get('/admin/order/rent/returned/{id}','orderController@rentReturned');
 
 
 

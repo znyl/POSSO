@@ -10,7 +10,15 @@
 	</ul>
 </li>
 
-<li><a href="{{url('admin/order/index')}}"><i class="fa fa-dashboard"></i><span>Order</span><i class="fa fa-angle-left"></i></a></li>
+<li>
+	<a href="#"><i class="fa fa-book"></i><span>List Order</span><i class="fa fa-angle-left"></i></a>
+	<ul class="treeview-menu">
+		<li><a href="{{url('admin/order/index')}}"><i class="fa fa-dashboard"></i><span>New Order</span><i class="fa fa-angle-left"></i></a></li>
+		<li><a href="{{url('admin/order/delivered')}}"><i class="fa fa-dashboard"></i><span>Delivered Order</span><i class="fa fa-angle-left"></i></a></li>
+		<li><a href="{{url('admin/order/rent')}}"><i class="fa fa-dashboard"></i><span>Rented Product</span><i class="fa fa-angle-left"></i></a></li>
+		<li><a href="{{url('admin/order/all')}}"><i class="fa fa-dashboard"></i><span>All Order history</span><i class="fa fa-angle-left"></i></a></li>
+	</ul>
+	
 <li class="treeview">
   <a href="#"><i class="fa fa-gear"></i><span>Settings</span><span class="pull-right-container"><i class="fa fa-angle-left"></i></span></a>
   <ul class="treeview-menu">

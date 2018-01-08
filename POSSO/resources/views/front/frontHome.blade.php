@@ -1,6 +1,6 @@
 @extends('front.layoutFront')
 @section('banner-image')
-{{asset('image/product/DSC_01041.jpg')}}
+{{asset('image/banner/DSC_01041.jpg')}}
 @stop
 @section('banner-class')
 home
@@ -101,7 +101,8 @@ home
                 <div class="container">
                     <div class="row">
                         <div class="main_work">
-
+                        @foreach($category as $index => $value)
+                            @if($index%2==1)
                             <div class="col-md-7 col-md-offset-5 col-sm-12 col-xs-12">
                                 <div class="work_item">
                                     <div class="row">
@@ -112,7 +113,7 @@ home
                                         </div>
                                         <div class="col-md-5 col-sm-12 col-xs-12 text-right pull-left sm-text-center">
                                             <div class="work_item_details m-top-80 sm-m-top-20">
-                                                <h4>Fashionista</h4>
+                                                <h4>{{ $value['nama_category'] }}</h4>
                                                 <div class="work_separator1"></div>
                                                 <p class="m-top-40 sm-m-top-10">Duis autem vel eum iriure dolor in hendrerit in vulputate velit molestie consequat</p>
                                             </div>
@@ -120,7 +121,7 @@ home
                                     </div>
                                 </div>
                             </div><!-- End off work-item -->
-
+                            @else
                             <div class="col-md-7 col-sm-12 col-xs-12">
                                 <div class="work_item">
                                     <div class="row">
@@ -131,7 +132,7 @@ home
                                         </div>
                                         <div class="col-md-5 col-sm-12 col-xs-12 text-left pull-left sm-text-center">
                                             <div class="work_item_details m-top-80 sm-m-top-20">
-                                                <h4>Fashionista</h4>
+                                                <h4>{{ $value['nama_category'] }}</h4>
                                                 <div class="work_separator2"></div>
                                                 <p class="m-top-40 sm-m-top-10">Duis autem vel eum iriure dolor in hendrerit in vulputate velit molestie consequat</p>
                                             </div>
@@ -140,51 +141,11 @@ home
 
                                 </div>
                             </div><!-- End off work-item -->
-
-                            <div class="col-md-7 col-md-offset-5 col-sm-12 col-xs-12">
-                                <div class="work_item">
-                                    <div class="row">
-                                        <div class="col-md-7 col-sm-12 col-xs-12 text-right pull-right sm-text-center">
-                                            <div class="work_item_img sm-m-top-40">
-                                                <img src="front/images/work-img3.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-sm-12 col-xs-12 text-right pull-left sm-text-center">
-                                            <div class="work_item_details m-top-80 sm-m-top-20">
-                                                <h4>Fashionista</h4>
-                                                <div class="work_separator1"></div>
-                                                <p class="m-top-40 sm-m-top-10">Duis autem vel eum iriure dolor in hendrerit in vulputate velit molestie consequat</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End off work-item -->
-
-                            <div class="col-md-7 col-sm-12 col-xs-12">
-                                <div class="work_item">
-                                    <div class="row">
-                                        <div class="col-md-7 col-sm-12 col-xs-12">
-                                            <div class="work_item_img sm-text-center sm-m-top-40">
-                                                <img src="front/images/work-img4.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-sm-12 col-xs-12 text-left pull-left sm-text-center">
-                                            <div class="work_item_details m-top-80 sm-m-top-20">
-                                                <h4>Fashionista</h4>
-                                                <div class="work_separator2"></div>
-                                                <p class="m-top-40 sm-m-top-10">Duis autem vel eum iriure dolor in hendrerit in vulputate velit molestie consequat</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div><!-- End off work-item -->
-
+                            @endif
+                        @endforeach
                         </div>
                     </div>
                 </div>
-
-
 
                 <br />
                 <br />
@@ -365,6 +326,14 @@ home
                         </div>
                     </div> <!--End off row -->
                 </div>
+
+                <br />
+                <br />
+                <br />
+                <hr />
+                <br />
+                <br />
+                <br />
 
             </section> <!--End off About section -->
 @stop

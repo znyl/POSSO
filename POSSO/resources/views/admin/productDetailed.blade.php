@@ -70,14 +70,17 @@
 	</thead>
 	<tbody>
 		@foreach($data->size as $index => $value)
-		<td>{{$index+1}}</td>
-		<td>{{$value['nama_size']}}</td>
-		<td>{{$value['lingkar_dada']}}cm</td>
-		<td>{{$value['lingkar_pinggul']}}cm</td>
-		<td>{{$value['panjang']}}cm</td>
-		<td>
-			<a href="{{url('admin/size/editForm',$value['id'])}}"><button class="btn btn-warning btn-flat">Edit</button></a>
-		</td>
+		<tr>
+			<td>{{$index+1}}</td>
+			<td>{{$value['nama_size']}}</td>
+			<td>{{$value['lingkar_dada']}}cm</td>
+			<td>{{$value['lingkar_pinggul']}}cm</td>
+			<td>{{$value['panjang']}}cm</td>
+			<td>
+				<a href="{{url('admin/size/editForm',$value['id'])}}"><button class="btn btn-warning btn-flat">Edit</button></a>
+			</td>
+		</tr>
+		
 		@endforeach
 	</tbody>
 </table>
@@ -85,7 +88,7 @@
 @foreach($data->file_gambar as $index => $value)
 <div class="col-md-3">
 	<div class="box-image">
-		<div class="product-title">{{$value['nama_file']}} @if($data['file_gambar_id']==$value['id']) (Main) @endif</div>
+		<div class="product-title"> {{$index+1}} @if($data['file_gambar_id']==$value['id']) (Main) @endif</div>
 		<img src="{{asset($value['direktori_file'])}}" class="product-img">
 	</div>
 	<hr>

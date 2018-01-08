@@ -34,6 +34,10 @@ List Order
 			<td>Telah Dikonfirmasi</td>
 			@elseif($value['status']==3)
 			<td>Telah Dikirim</td>
+			@elseif($value['status']==4)
+			<td>Order telah selesai</td>
+			@elseif($value['status']==0)
+			<td>Order dibatalkan</td>
 			@endif
 			<td>{{$value['created_at']}}</td>
 			<td>{{number_format($value['total'])}}</td>

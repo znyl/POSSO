@@ -62,7 +62,7 @@ Discount Form
 	</div>
 	<hr>
 	
-		<table class="table table-bordered table-hover table-striped table-condensed">
+		<table class="table table-bordered table-hover table-striped table-condensed" >
 			<thead>
 				<tr>
 					<td>#</td>

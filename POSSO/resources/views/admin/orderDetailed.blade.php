@@ -72,6 +72,7 @@
 		<tr>
 			<td>#</td>
 			<td>Nama Product</td>
+			<td>Tipe Transaksi</td>
 			<td>Size</td>
 			<td>Qty.</td>
 			<td>Harga</td>
@@ -84,20 +85,27 @@
 		<tr>
 			<td>{{$index+1}}</td>
 			<td>{{$value->product->nama_product}}</td>
+			<td>
+				@if($value['tipe_transaksi']==1)
+				Beli
+				@elseif($value['tipe_transaksi']==2)
+				Sewa
+				@endif
+			</td>
 			<td>{{$value->size->nama_size}}</td>
 			<td>{{$value['qty']}}</td>
 			<td>{{number_format($value['total_harga'])}}</td>
 			<td>{{number_format($value['total'])}}</td>
 			<td>
-				@if($data['status']!=0 && $data['status']<3)
+				@if($data['status']!=0 && $data['status']<4)
 					@if($value->tipe_transaksi==2)
 						@if($value->product_rent->status==1)
-							<a href=""><button class="btn btn-flat btn-success">Dikembalikan</button></a>
-						@elseif($value->product->status==0)
-							<!-- <a href=""><button class="btn btn-flat btn-primary">Barang Diambil</button></a> -->
+							<a href="{{url('admin/order/rent/returned',$value->product_rent->id)}}"><button class="btn btn-flat btn-success">Dikembalikan</button></a>
+						@elseif($value->product_rent->status==0)
+							<a href="{{url('admin/order/rent/sent',$value->product_rent->id)}}"><button class="btn btn-flat btn-primary">Barang Diambil</button></a>
 							<a href="{{url('/admin/order/delete',$value['id'])}}"><button class="btn btn-danger btn-flat">Hapus</button></a>
 						@endif
-					@else
+					@elseif($data['status']<3)
 					<a href="{{url('/admin/order/delete',$value['id'])}}"><button class="btn btn-danger btn-flat">Hapus</button></a>
 					@endif
 				@endif

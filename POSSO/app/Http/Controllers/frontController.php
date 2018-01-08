@@ -11,7 +11,14 @@ class frontController extends Controller
 {
     //
     private $category;
-
+    public function index()
+    {
+        return view('front.frontHome');
+    }
+    public function contactUs()
+    {
+        return view('front.contactUs');
+    }
     public function test(Request $request)
     {
     	if($request->submit=="Sewa")
@@ -19,10 +26,7 @@ class frontController extends Controller
         else if($request->submit=="Beli")
             echo "beli bos";
     }
-    public function index()
-    {
-    	return view('front.frontHome');
-    }
+    
     public function product($id)
     {
     	$data = product::where('category_id','=',$id)->where('status_product','=',1)->get();
