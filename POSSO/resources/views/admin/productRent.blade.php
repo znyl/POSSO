@@ -24,7 +24,7 @@ List Order
 		@foreach($data as $index => $value)
 		<tr>
 			<td>{{$index+1}}</td>
-			<td><a href="{{url('admin/order',$value['id'])}}">{{$value->order->kode_order}}</a></td>
+			<td><a href="{{url('admin/order',$value->order->id)}}">{{$value->order->kode_order}}</a></td>
 			<td>{{$value->product->nama_product}}</td>
 			<td>{{$value->order['nama_konsumen']}}</td>
 			<td>{{$value->order['email_konsumen']}}</td>	

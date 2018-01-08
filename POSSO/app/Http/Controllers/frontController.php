@@ -17,6 +17,7 @@ class frontController extends Controller
     }
     public function contactUs()
     {
+        
         return view('front.contactUs');
     }
     public function test(Request $request)

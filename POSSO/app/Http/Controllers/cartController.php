@@ -62,7 +62,7 @@ class cartController extends Controller
         }
         
         if($request->tipe=="Beli")
-            $data[$request->tipe][$request->product_id][$request->size]=$request->qty;
+            $data[$request->tipe][$request->product_id][$request->size]['qty']=$request->qty;
         else if($request->tipe="Sewa")
         {
             $data[$request->tipe][$request->product_id][$request->size]['tgl_mulai']=$request->tgl_mulai;
