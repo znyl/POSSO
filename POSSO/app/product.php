@@ -31,4 +31,8 @@ class product extends Model
     {
         return $this->hasMany('App\order_detail','product_id');
     }
+    public function color()
+    {
+        return $this->hasMany('App\color','product_id');
+    }
 }
