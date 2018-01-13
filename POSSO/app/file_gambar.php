@@ -10,7 +10,7 @@ class file_gambar extends Model
     protected $table = 'file_gambar';
     public function product()
     {
-    	return $this->belongsTo('App/product','product_id');
+    	return $this->belongsTo('App\product','product_id');
     }
     public function custom_order()
     {
