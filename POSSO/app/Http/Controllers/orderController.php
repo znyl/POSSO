@@ -21,7 +21,7 @@ class orderController extends Controller
     }
     public function rent()
     {
-        $data = order_detail::where('tipe_transaksi','=','2')->get();
+        $data = product_rent::where('status','!=','2')->get();
         return view('admin/productRent',compact('data'));
     }
     public function all()

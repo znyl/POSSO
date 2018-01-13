@@ -79,7 +79,7 @@ model-banner
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($data->size as $index => $value)
+                                        @foreach($data->size->where('status','=',1) as $index => $value)
                                         <tr>
                                             <td>{{$value['nama_size']}}</td>
                                             <td>{{$value['lingkar_dada']}}</td>
@@ -90,8 +90,8 @@ model-banner
                                     </tbody>
                                 </table>
                             <hr>
-                                <form method="post" action="/addCart" class>
-                                {{csrf_field()}}
+                                <form method="post" action="{{ url('/addCart') }}" class>
+                                {{ csrf_field() }}
                                     <input type="hidden" name="product_id" value="{{$data['id']}}">
                                     <div class='col-sm-6'>
                                         <div class="form-group">
@@ -103,8 +103,18 @@ model-banner
                                         <div class="form-group">
                                             <label>Size</label>
                                             <select class="form-control" name="size">
-                                                @foreach($data->size as $index => $value)
+                                                @foreach($data->size->where('status','=',1) as $index => $value)
                                                 <option value="{{$value['id']}}">{{$value['nama_size']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Warna</label>
+                                            <select class="form-control" name="warna">
+                                                @foreach($data->color->where('status','=',1) as $index => $value)
+                                                <option value="{{$value['id']}}">{{$value['nama_warna']}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -118,8 +128,8 @@ model-banner
                             <div class="col-md-12 text-left">
                                 
                             <hr>
-                                <form method="post" action="/addCart" class>
-                                {{csrf_field()}}
+                                <form method="post" action="{{ url('/addCart') }}" class>
+                                {{ csrf_field() }}
                                     <input type="hidden" name="product_id" value="{{$data['id']}}">
                                     <div class='col-sm-6'>
                                         <div class="form-group">
@@ -139,6 +149,16 @@ model-banner
                                             <select class="form-control" name="size">
                                                 @foreach($data->size as $index => $value)
                                                 <option value="{{$value['id']}}">{{$value['nama_size']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Warna</label>
+                                            <select class="form-control" name="warna">
+                                                @foreach($data->color->where('status','=',1) as $index => $value)
+                                                <option value="{{$value['id']}}">{{$value['nama_warna']}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

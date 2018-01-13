@@ -29,6 +29,8 @@ model-banner
 					<td><a href="{{url('product/detailed',$value['id'])}}" class="photo"><img src="{{asset($value['gambar']->direktori_file)}}" class="cart-image"></a></td>
 					<td>
 					{{$value['nama_product']}}
+					<p>Warna : {{$value['warna']->nama_warna}}</p>
+					<p>Ukuran : {{$value['size']->nama_size}}</p>
 					</td>
 					</td>
 					<td>{{$value['size']->nama_size}}</td>

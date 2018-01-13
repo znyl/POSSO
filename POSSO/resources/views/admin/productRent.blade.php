@@ -15,7 +15,8 @@ List Order
 			<td>Nama Produk</td>
 			<td>Nama Konsumen</td>
 			<td>E - Mail</td>
-			<td>Tgl. Order</td>
+			<td>Tgl. Mulai</td>
+			<td>Tgl. Akhir</td>
 			<td>Status</td>
 			<td>Action</td>
 		</tr>
@@ -24,17 +25,18 @@ List Order
 		@foreach($data as $index => $value)
 		<tr>
 			<td>{{$index+1}}</td>
-			<td><a href="{{url('admin/order',$value->order->id)}}">{{$value->order->kode_order}}</a></td>
-			<td>{{$value->product->nama_product}}</td>
-			<td>{{$value->order['nama_konsumen']}}</td>
-			<td>{{$value->order['email_konsumen']}}</td>	
-			<td>{{$value['created_at']}}</td>
-			@if($value->product_rent['status']==0)
+			<td><a href="{{url('admin/order',$value->order_detail->order->id)}}">{{$value->order_detail->order->kode_order}}</a></td>
+			<td>{{$value->order_detail->product->nama_product}}</td>
+			<td>{{$value->order_detail->order['nama_konsumen']}}</td>
+			<td>{{$value->order_detail->order['email_konsumen']}}</td>	
+			<td>{{$value['tgl_mulai']}}</td>
+			<td>{{$value['tgl_akhir']}}</td>
+			@if($value['status']==0)
 			<td>Belum Terkirim</td>
-			<td><a href="{{url('admin/order/rent/sent',$value->product_rent->id)}}"><button class="btn btn-flat btn-primary">Barang Diambil</button></a></td>
-			@elseif($value->product_rent['status']==1)
+			<td><a href="{{url('admin/order/rent/sent',$value['id'])}}"><button class="btn btn-flat btn-primary">Kirim Barang</button></a></td>
+			@elseif($value['status']==1)
 			<td>Telah terkirim</td>
-			<td><a href="{{url('admin/order/rent/returned',$value->product_rent->id)}}"><button class="btn btn-flat btn-success">Dikembalikan</button></a></td>
+			<td><a href="{{url('admin/order/rent/returned',$value['id'])}}"><button class="btn btn-flat btn-success">Dikembalikan</button></a></td>
 			@endif
 			
 

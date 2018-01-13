@@ -24,7 +24,7 @@ Route::get('/contactUs','frontController@contactUs');
 //shopping cart
 Route::post('/addCart','cartController@addCart');
 Route::post('/refreshCart','cartController@refreshCart');
-Route::get('/deleteCart/{tipe}/{product}/{size}','cartController@deleteCart');
+Route::get('/deleteCart/{tipe}/{product}/{size}/{warna}','cartController@deleteCart');
 Route::get('/cart','cartController@index');
 //shopping cart end
 
@@ -52,8 +52,10 @@ Route::post('/admin/product/update','productController@update');
 Route::post('/admin/product/setDiscount','productController@setDiscount');
 Route::get('/admin/product/enable/{id}','productController@enable');
 Route::get('/admin/product/disable/{id}','productController@disable');
-Route::post('/admin/product/insertGambar','productController@insertGambar');
+Route::post('/admin/product/insertGambar','fileController@insert');
 Route::get('/admin/product/setMainPicture/{id}','productController@setMainPicture');
+
+Route::get('/admin/file/product/delete/{id}','fileController@delete');
 
 Route::get('/admin/discount/index','discountController@index');
 Route::get('/admin/discount/addForm', 'discountController@addForm');
@@ -65,6 +67,14 @@ Route::post('/admin/discount/insertSingle','discountController@insertSingle');
 Route::post('/admin/size/insertSize','productSizeController@insert');
 Route::get('/admin/size/editForm/{id}','productSizeController@edit');
 Route::post('/admin/size/updateSize','productSizeController@update');
+Route::get('/admin/size/setStatus/{id}','productSizeController@setStatus');
+Route::get('/admin/size/delete/{id}','productSizeController@delete');
+
+Route::post('/admin/color/insert','productColorController@insert');
+Route::post('/admin/color/update','productColorController@update');
+Route::get('/admin/color/editForm/{id}','productColorController@edit');
+Route::get('/admin/color/setStatus/{id}/{status}','productColorController@setStatus');
+Route::get('/admin/color/delete/{id}','productColorController@delete');
 
 Route::get('/admin/order/index','orderController@index');
 Route::get('/admin/order/delivered','orderController@delivered');
@@ -76,6 +86,9 @@ Route::get('/admin/order/delete/{id}','orderController@deleteItem');
 Route::get('/admin/order/deleteOrder/{id}','orderController@deleteOrder');
 Route::get('/admin/order/rent/sent/{id}','orderController@rentSent');
 Route::get('/admin/order/rent/returned/{id}','orderController@rentReturned');
+
+Route::get('/admin/orderCustom/index','customOrderController@index');
+Route::get('/admin/orderCustom/detailed/{id}','customOrderController@detailed');
 
 
 

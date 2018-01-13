@@ -39,7 +39,7 @@ Form Ubah Data
 	</div>
 @stop
 @section('box-footer')
-<a href="{{url('admin/category/index')}}"><button type="button" class="btn btn-danger btn-flat">Kembali</button></a>
+<a href="{{url('admin/product',$data['product_id'])}}}"><button type="button" class="btn btn-danger btn-flat">Kembali</button></a>
 <input type="submit" name="submit" value="Simpan" class="btn btn-flat btn-success">
 <form>
 @stop
