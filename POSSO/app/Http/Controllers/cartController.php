@@ -63,7 +63,9 @@ class cartController extends Controller
         }
         
         if($request->tipe=="Beli")
+        {
             $data[$request->tipe][$request->product_id][$request->warna][$request->size]['qty']=$request->qty;
+        }
         else if($request->tipe="Sewa")
         {
             $data[$request->tipe][$request->product_id][$request->warna][$request->size]['tgl_mulai']=$request->tgl_mulai;
@@ -72,20 +74,21 @@ class cartController extends Controller
             $data[$request->tipe][$request->product_id][$request->warna][$request->size]['qty']=$request->qty;
 
         }
-        print_r($data);
-        if($data[$request->tipe][$request->product_id][$request->warna][$request->size]['qty']=$request->qty==0)
+       
+        if($data[$request->tipe][$request->product_id][$request->warna][$request->size]['qty']==0)
         {
 
             unset($data[$request->tipe][$request->product_id][$request->warna][$request->size]);
         }
         session(['shopping_cart'=>$data]);
+        
         return redirect('/cart');
     }
 
     public function deleteCart($tipe, $product_id, $size, $warna)
     {
         $data = session('shopping_cart');
-        unset($data[$request->tipe][$request->product_id][$request->warna][$request->size]);
+        unset($data[$tipe][$product_id][$warna][$size]);
         session(['shopping_cart'=>$data]);
         return redirect('/cart');
     }

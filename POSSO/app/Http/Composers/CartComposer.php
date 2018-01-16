@@ -4,7 +4,7 @@ use Illuminate\Contracts\View\View;
 class CartComposer  {
 
 	public function compose($view)
-	{session()->flush();
+	{
 		$cart = array();
         $total=0;
         $index=0;
@@ -32,6 +32,7 @@ class CartComposer  {
                                 $tipediskon=2;
                                 $get['tgl_mulai']=$qty['tgl_mulai'];
                                 $get['tgl_akhir']=$qty['tgl_akhir'];
+                                $get['durasi'] = $qty['durasi'];
                                 
                             }
                             if($get->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->count()>0)
@@ -44,17 +45,28 @@ class CartComposer  {
                                 $get['diskon_status']=false;
 
                             if($get['diskon_status'])
+                            {
                                 $total+= $get['diskon']->harga_diskon * $get['qty'];
+                                if($tipe == "Beli")
+                                    $get['total']= $get['diskon']->harga_diskon * $get['qty'];
+                                else if ($tipe=="Sewa")
+                                    $get['total']= $get['diskon']->harga_diskon * $get['qty'] * $get['durasi'];
+                            }
+                            
                             else
                             {
                                 if($tipe == "Beli")
+                                {
                                     $total+= $get->harga_product * $get['qty'];
+                                    $get['total']= $get->harga_product * $get['qty'];
+                                }
                                 else if ($tipe=="Sewa")
-                                    $total+= $get->harga_sewa_product*$get['qty'];
+                                {
+                                    $total+= $get->harga_sewa_product*$get['qty']*$get['durasi'];
+                                    $get['total']= $get->harga_sewa_product * $get['qty'] * $get['durasi'];
+
+                                }
                             }
-
-                            
-
                             $item++;
                             array_push($cart,$get);
                         } 

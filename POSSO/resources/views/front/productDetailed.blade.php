@@ -90,8 +90,8 @@ model-banner
                                     </tbody>
                                 </table>
                             <hr>
-                                <form method="post" action="{{ url('/addCart') }}" class>
-                                {{ csrf_field() }}
+                                <form method="post" action="{{url('/addCart')}}" class>
+                                {{csrf_field()}}
                                     <input type="hidden" name="product_id" value="{{$data['id']}}">
                                     <div class='col-sm-6'>
                                         <div class="form-group">
@@ -128,8 +128,8 @@ model-banner
                             <div class="col-md-12 text-left">
                                 
                             <hr>
-                                <form method="post" action="{{ url('/addCart') }}" class>
-                                {{ csrf_field() }}
+                                <form method="post" action="{{url('/addCart')}}" class>
+                                {{csrf_field()}}
                                     <input type="hidden" name="product_id" value="{{$data['id']}}">
                                     <div class='col-sm-6'>
                                         <div class="form-group">
@@ -161,6 +161,12 @@ model-banner
                                                 <option value="{{$value['id']}}">{{$value['nama_warna']}}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6'>
+                                        <div class="form-group">
+                                            <label>Qty.</label>
+                                            <input type="text" name="qty" class="form-control" min="0" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

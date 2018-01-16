@@ -36,83 +36,88 @@ class checkOutController extends Controller
             {
                 foreach ($value as $product_id => $value2) 
                 {
-                    $get= product::find($product_id);
-                    foreach($value2 as $size => $qty)
+                    foreach($value2 as $warna =>$value3)
                     {
-                        $detail = new order_detail;
-                        $detail->order_id = $insert->id;
-                        $detail->product_id = $product_id;
-                        $detail->size_id = $size;
-                        $detail->qty = $qty['qty'];
-
-                        if($tipe=="Beli")
-                            $tipediskon= 1;
-                        else if($tipe=="Sewa")
+                        $get= product::find($product_id);
+                        foreach($value3 as $size => $qty)
                         {
-                            $tipediskon=2;
-                        }
+                            $detail = new order_detail;
+                            $detail->order_id = $insert->id;
+                            $detail->product_id = $product_id;
+                            $detail->size_id = $size;
+                            $detail->color_id = $warna;
+                            $detail->qty = $qty['qty'];
 
-                        if($get->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->count()>0)
-                        {
-                            $get['diskon'] = discount::where('product_id',$get->id)->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->first();
+                            if($tipe=="Beli")
+                                $tipediskon= 1;
+                            else if($tipe=="Sewa")
+                            {
+                                $tipediskon=2;
+                            }
+
+                            if($get->discount->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->count()>0)
+                            {
+                                $get['diskon'] = discount::where('product_id',$get->id)->where('tgl_mulai','<=',date('Y-m-d'))->where('tgl_akhir','>=',date('Y-m-d'))->where('tipe_transaksi',$tipediskon)->first();
+                                
+                                $get['diskon_status']=true;
+                            }
+                            else
+                                $get['diskon_status']=false;
+
                             
-                            $get['diskon_status']=true;
-                        }
-                        else
-                            $get['diskon_status']=false;
 
-                        
+                            if($tipe=="Beli")
+                            {
+                                $detail->tipe_transaksi = 1;
+                                if($get['diskon_status'])
+                                {
+                                    $detail->harga_jual = $get['harga_product'];
+                                    $detail->diskon = $get['diskon']->discount;
+                                    $detail->total_harga = $get['diskon']->harga_diskon;
+                                    $detail->diskon_id = $get['diskon']->id;
+                                    
+                                }
+                                else
+                                {
+                                    $detail->harga_jual = $get['harga_product'];
+                                    $detail->diskon = 0;
+                                    $detail->total_harga = $get['harga_product'];
+                                    $detail->diskon_id = 0;
+                                }
+                                $detail->total = $detail->qty*$detail->total_harga;
+                                $detail->save();
 
-                        if($tipe=="Beli")
-                        {
-                            $detail->tipe_transaksi = 1;
-                            if($get['diskon_status'])
-                            {
-                                $detail->harga_jual = $get['harga_product'];
-                                $detail->diskon = $get['diskon']->discount;
-                                $detail->total_harga = $get['diskon']->harga_diskon;
-                                $detail->diskon_id = $get['diskon']->id;
-                                
                             }
-                            else
+                            else if($tipe=="Sewa")
                             {
-                                $detail->harga_jual = $get['harga_product'];
-                                $detail->diskon = 0;
-                                $detail->total_harga = $get['harga_product'];
-                                $detail->diskon_id = 0;
+                                if($get['diskon_status'])
+                                {
+                                    $detail->harga_jual = $get['harga_sewa_product'];
+                                    $detail->diskon = $get['diskon']->discount;
+                                    $detail->total_harga = $get['diskon']->harga_diskon;
+                                    $detail->diskon_id = $get['diskon']->id;
+                                    
+                                }
+                                else
+                                {
+                                    $detail->harga_jual = $get['harga_sewa_product'];
+                                    $detail->diskon = 0;
+                                    $detail->total_harga = $get['harga_sewa_product'];
+                                    $detail->diskon_id = 0;
+                                }
+                                $detail->total = $detail->qty*$detail->total_harga*$qty['durasi'];
+                                $detail->tipe_transaksi = 2;
+                                $detail->save();
+                                $rent = new product_rent;
+                                $rent->order_detail_id = $detail->id;
+                                $rent->tgl_mulai = $qty['tgl_mulai'];
+                                $rent->tgl_akhir = $qty['tgl_akhir'];
+                                $rent->status = 0;
+                                $rent->save();
                             }
-                            $detail->total = $detail->qty*$detail->total_harga;
-                            $detail->save();
-
-                        }
-                        else if($tipe=="Sewa")
-                        {
-                            if($get['diskon_status'])
-                            {
-                                $detail->harga_jual = $get['harga_sewa_product'];
-                                $detail->diskon = $get['diskon']->discount;
-                                $detail->total_harga = $get['diskon']->harga_diskon;
-                                $detail->diskon_id = $get['diskon']->id;
-                                
-                            }
-                            else
-                            {
-                                $detail->harga_jual = $get['harga_sewa_product'];
-                                $detail->diskon = 0;
-                                $detail->total_harga = $get['harga_sewa_product'];
-                                $detail->diskon_id = 0;
-                            }
-                            $detail->total = $detail->qty*$detail->total_harga;
-                            $detail->tipe_transaksi = 2;
-                            $detail->save();
-                            $rent = new product_rent;
-                            $rent->order_detail_id = $detail->id;
-                            $rent->tgl_mulai = $qty['tgl_mulai'];
-                            $rent->tgl_akhir = $qty['tgl_akhir'];
-                            $rent->status = 0;
-                            $rent->save();
                         }
                     }
+                    
                 }
             }
             session()->flush();
