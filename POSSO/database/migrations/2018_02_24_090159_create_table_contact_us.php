@@ -18,6 +18,7 @@ class CreateTableContactUs extends Migration
             $table->char('name',255);
             $table->char('email',255);
             $table->text('message');
+            $table->char('status',25);
             $table->timestamps();
         });
     }

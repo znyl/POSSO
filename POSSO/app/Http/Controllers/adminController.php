@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\order;
 use DateTime;
 use App\custom_order;	
+use App\contact_us;
 use Illuminate\Http\Request;
 
 
@@ -21,6 +22,7 @@ class adminController extends Controller
     	$data['unprocessed_order'] = order::where('status','=',1)->count();
     	$data['cancel'] = order::where('status','=',0)->where('created_at','>=',$awal->format('Y-m-d 00:00:00'))->where('created_at','<=',$akhir->format('Y-m-d 23:59:59'))->count();
 
-    	return view('admin/adminDashboard',compact('data'));
+    	$contactus = contact_us::where('status','=','Baru')->get();
+    	return view('admin/adminDashboard',compact('data','contactus'));
     }
 }

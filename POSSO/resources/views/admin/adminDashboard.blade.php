@@ -63,3 +63,30 @@
         <!-- ./col -->
       </div>
 @stop
+@section('box-title')
+Contact Us
+@stop
+@section('box-body')
+<table class="table table-condensed table-striped table-hover table-bordered" id="dataTable">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Nama</td>
+      <td>E-mail</td>
+      <td>Status</td>
+      <td>Tgl. Masuk</td>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($contactus as $index => $value)
+    <tr>
+      <td>{{ $index+1 }}</td>
+      <td>{{ $value['name'] }}</td>
+      <td>{{ $value['email'] }}</td>
+      <td>{{ $value['status'] }}</td>
+      <td>{{ date('d-m-Y H:i:s', strtotime($value['created_at'])) }}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+@stop

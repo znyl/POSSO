@@ -5,6 +5,7 @@ use App\category;
 use App\product;
 use App\discount;
 use App\file_gambar;
+use App\contact_us;
 use Illuminate\Http\Request;
 
 class frontController extends Controller
@@ -23,12 +24,19 @@ class frontController extends Controller
 
     public function contactSubmit(Request $request)
     {
+        $data = new contact_us;
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->message = $request->message;
+        $data->status = "Baru";
+        $data->save();
         
+        //return redirect(url('/contactUs'));
     }
     public function test(Request $request)
     {
     	if($request->submit=="Sewa")
-            echo "Sewa Bos";
+            echo "Sewa Bos"; 
         else if($request->submit=="Beli")
             echo "beli bos";
     }

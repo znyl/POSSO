@@ -20,7 +20,7 @@ Route::get('/product/category/{id}','frontController@product');
 Route::get('/product/detailed/{id}','frontController@productDetailed');
 Route::get('/MUA/profile','frontController@mua');
 Route::get('/contactUs','frontController@contactUs');
-Route::post('/contactUs/submit','frontController@contactSubmit');
+Route::post('/submitContact','frontController@contactSubmit');
 //shopping cart
 Route::post('/addCart','cartController@addCart');
 Route::post('/refreshCart','cartController@refreshCart');

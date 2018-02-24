@@ -54,7 +54,8 @@ model-banner
             <div class="main_contact p-top-100">
 
                 <div class="col-md-offset-3 col-md-6 sm-m-top-30">
-                    <form class="" action="">
+                    <form class="" action="{{ url('/submitContact')}}" method="post">
+                        {{csrf_field()}}
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group"> 
@@ -66,17 +67,18 @@ model-banner
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Your Email *</label>
-                                    <input id="email" name="email" type="text" class="form-control">
+                                    <input id="email" name="email" type="email" class="form-control" required="">
                                 </div>
                             </div>
 
                             <div class="col-sm-12">
                                 <div class="form-group"> 
                                     <label>Your Message *</label>
-                                    <textarea class="form-control" rows="6"></textarea>
+                                    <textarea class="form-control" rows="6" name="message"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <a href="" class="btn btn-default">SEND MESSAGE <i class="fa fa-long-arrow-right"></i></a>
+                                    
+                                    <input type="submit" name="submit" value="SEND MESSAGE" class="btn btn-default">
                                 </div>
                             </div>
 
