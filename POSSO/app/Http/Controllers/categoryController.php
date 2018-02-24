@@ -37,4 +37,13 @@ class categoryController extends Controller
             return redirect()->action('categoryController@index')->with('success','Data berhasil ditambahkan');
         return redirect()->action('categoryController@editForm',$request->id)->with('error','Data tidak dapat disimpan');
     }
+    public function detailed($id)
+    {
+        $data = category::find($id);
+        return view('admin.categoryDetailed',compact('data'));
+    }
+    public function setBanner(Request $request)
+    {
+
+    }
 }

@@ -20,7 +20,7 @@ Route::get('/product/category/{id}','frontController@product');
 Route::get('/product/detailed/{id}','frontController@productDetailed');
 Route::get('/MUA/profile','frontController@mua');
 Route::get('/contactUs','frontController@contactUs');
-
+Route::post('/contactUs/submit','frontController@contactSubmit');
 //shopping cart
 Route::post('/addCart','cartController@addCart');
 Route::post('/refreshCart','cartController@refreshCart');
@@ -41,8 +41,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/index', 'adminController@index');
 Route::get('/admin/category/index', 'categoryController@index');
 Route::get('/admin/category/edit/{id}', 'categoryController@editForm');
+Route::get('/admin/category/detailed/{id}','categoryController@detailed');
 Route::post('/admin/category/insert', 'categoryController@insert');
 Route::post('/admin/category/update', 'categoryController@update');
+Route::post('/admin/category/setGambar', 'fileController@categoryPicture');
 
 Route::get('/admin/product/index','productController@index');
 Route::get('/admin/product/detailed/{id}','productController@detailed');
@@ -86,9 +88,16 @@ Route::get('/admin/order/delete/{id}','orderController@deleteItem');
 Route::get('/admin/order/deleteOrder/{id}','orderController@deleteOrder');
 Route::get('/admin/order/rent/sent/{id}','orderController@rentSent');
 Route::get('/admin/order/rent/returned/{id}','orderController@rentReturned');
+Route::get('/admin/order/invoice/view/{id}','orderController@invoiceView');
 
 Route::get('/admin/orderCustom/index','customOrderController@index');
 Route::get('/admin/orderCustom/detailed/{id}','customOrderController@detailed');
+
+Route::get('/admin/setting/email/index','settingEmailController@index');
+Route::post('/admin/setting/email/update','settingEmailController@update');
+Route::get('/sendMail','settingEmailController@send');
+
+Route::get('/admin/data/export/excell/category','exportDataController@category');
 
 
 

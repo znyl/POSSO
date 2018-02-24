@@ -14,6 +14,10 @@
 		<td>{{$data['kode_order']}}</td>
 	</tr>
 	<tr>
+		<td>Tipe Produk</td>
+		<td>{{ $data->category->nama_category }}</td>
+	</tr>
+	<tr>
 		<td>Nama Konsumen</td>
 		<td>{{$data['nama_konsumen']}}</td>
 	</tr>
@@ -69,7 +73,9 @@
 			@if($data['status']!=0 && $data['status']<3)
 			<a href="{{ url('') }}"><button class="btn btn-danger btn-flat">Batalkan</button></a>
 			@endif
+			<a href=""><button class="btn btn-success btn-flat">Buat Invoice</button></a>
 		</td>
+
 	</tr>
 	@endif
 </table>

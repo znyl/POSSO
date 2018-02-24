@@ -28,4 +28,8 @@ class order_detail extends Model
     {
         return $this->hasOne('App\product_rent','order_detail_id');
     }
+    public function color()
+    {
+        return $this->belongsTo('App\color','color_id');
+    }
 }

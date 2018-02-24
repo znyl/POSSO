@@ -15,4 +15,5 @@ class order extends Model
     {
     	return $this->hasManyThrough('App\product_rent','App\order_detail','order_id','order_detail_id');
     }
+    
 }

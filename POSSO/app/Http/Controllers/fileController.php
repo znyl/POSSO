@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\file_gambar;
+use App\category;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -46,5 +47,26 @@ class fileController extends Controller
 		$data->delete();
     	return redirect()->action('productController@detailed',$product_id)->with('success','Gambar berhasil dihapus');
 
+    }
+    public function categoryPicture(Request $request)
+    {
+        $fileName = $request->file('gambar')->getClientOriginalName();
+        $destinationPath = public_path()."/image/category/".$request->id_category."/";
+        if($request->file('gambar')->move($destinationPath, $fileName))
+        {
+            $insert_gambar = new file_gambar;
+            $insert_gambar->direktori_file = '/image/category/'.$request->id_category."/".$fileName;
+            $insert_gambar->nama_file = $fileName;
+            $insert_gambar->product_id = 0;
+            if($insert_gambar->save())
+            {
+                $cat = category::find($request->id_category);
+                $cat->file_gambar_id = $insert_gambar->id;
+                $cat->save();
+                return redirect()->action('categoryController@detailed',$request->id_category)->with('success','Gambar berhasil ditambahkan');
+            }
+        }
+        else
+            return redirect()->action('categoryController@detailed',$request->id_category)->with('error','Gambar tidak dapat disimpan');
     }
 }

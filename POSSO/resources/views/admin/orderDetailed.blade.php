@@ -51,6 +51,7 @@
 	<tr>
 		<td>Action</td>
 		<td>
+			<a href="{{url('admin/order/invoice/view',$data['id'])}}"><button class="btn btn-flat btn-primary">Invoice</button></a>
 			@if($data['status']==1)
 			<a href="{{ url('admin/order',[$data['id'],2]) }}"><button class="btn btn-flat btn-warning">Proses Order</button></a>
 			@elseif($data['status']==2)

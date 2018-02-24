@@ -12,4 +12,8 @@ class custom_order extends Model
     {
     	return $this->belongsTo('App\file_gambar','image_ref_id');
     }
+    public function category()
+    {
+    	return $this->belongsTo('App\category','category_id');
+    }
 }

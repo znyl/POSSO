@@ -16,4 +16,8 @@ class file_gambar extends Model
     {
     	return $this->hasOne('App\custom_order','image_ref_id');
     }
+    public function category()
+    {
+        return $this->hasOne('App\category','file_gambar_id');
+    }
 }

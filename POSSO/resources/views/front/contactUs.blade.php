@@ -53,8 +53,8 @@ model-banner
         <div class="row">
             <div class="main_contact p-top-100">
 
-                <div class="col-md-6 sm-m-top-30">
-                    <form class="" action="subcribe.php">
+                <div class="col-md-offset-3 col-md-6 sm-m-top-30">
+                    <form class="" action="">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group"> 

@@ -11,4 +11,8 @@ class color extends Model
     {
     	return $this->belongsTo('App\product','product_id');
     }
+    public function order_detail()
+    {
+    	return $this->hasMany('App\order_detail','color_id');
+    }
 }

@@ -13,7 +13,7 @@
 <li>
 	<a href="#"><i class="fa fa-book"></i><span>List Order</span><i class="fa fa-angle-left"></i></a>
 	<ul class="treeview-menu">
-		<li><a href="{{url('admin/order/index')}}"><i class="fa fa-dashboard"></i><span>New Order</span><i class="fa fa-angle-left"></i></a></li>
+		<li><a href="{{url('admin/order/index')}}"><i class="fa fa-dashboard"></i><span>Active Order</span><i class="fa fa-angle-left"></i></a></li>
 		<li><a href="{{url('admin/orderCustom/index')}}"><i class="fa fa-dashboard"></i><span>Custom Order</span><i class="fa fa-angle-left"></i></a></li>
 		<li><a href="{{url('admin/order/delivered')}}"><i class="fa fa-dashboard"></i><span>Delivered Order</span><i class="fa fa-angle-left"></i></a></li>
 		<li><a href="{{url('admin/order/rent')}}"><i class="fa fa-dashboard"></i><span>Rented Product</span><i class="fa fa-angle-left"></i></a></li>
@@ -25,5 +25,6 @@
   <ul class="treeview-menu">
     <li><a href=""><i class="fa fa-angle-right"></i><span>User</span></a></li>
     <li><a href=""><i class="fa fa-angle-right"></i><span>Banner</span></a>
+    <li><a href="{{url('admin/setting/email/index')}}"><i class="fa fa-angle-right"></i><span>Email</span></a></li>
   </ul>
 </li>

@@ -20,6 +20,11 @@ class frontController extends Controller
         
         return view('front.contactUs');
     }
+
+    public function contactSubmit(Request $request)
+    {
+        
+    }
     public function test(Request $request)
     {
     	if($request->submit=="Sewa")

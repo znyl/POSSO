@@ -20,6 +20,7 @@ class checkOutController extends Controller
         $awal = new DateTime("first day of this month");
         $akhir = new DateTime("last day of this month");
         $angka = order::where('created_at','>=',$awal->format("Y-m-d 00:00:00"))->where('created_at','<=',$akhir->format('Y-m-d 23:59:59'))->count()+1;
+        $angka = sprintf("%04d");
         $kode = "INV-".date("mY")."-".$angka;
         $insert = new order;
         $insert->kode_order = $kode;

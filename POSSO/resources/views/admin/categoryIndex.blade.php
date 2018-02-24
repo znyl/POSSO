@@ -22,7 +22,7 @@ Category
 		@foreach($data as $index => $value)
 		<tr>
 			<td>{{$index+1}}</td>
-			<td>{{$value['nama_category']}}</td>
+			<td><a href="{{url('admin/category/detailed',$value['id'])}}">{{$value['nama_category']}}</a></td>
 			<td>
 				<a href="{{url('/admin/category/edit',$value['id'])}}"><button class="btn btn-flat btn-warning">Ubah</button></a>
 			</td>

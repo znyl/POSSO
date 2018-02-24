@@ -34,6 +34,11 @@ class orderController extends Controller
     	$data = order::find($id);
     	return view('admin/orderDetailed',compact('data'));
     }
+    public function invoiceView($id)
+    {
+        $data = order::find($id);
+        return view('admin/invoiceView',compact('data'));
+    }
     public function statusChange($id, $status)
     {
     	$order = order::find($id);
