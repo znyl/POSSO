@@ -105,6 +105,7 @@ model-banner
 			}
 			else if($("#tipe").val()==2){
 				$("#hari").prop('disabled',false);
+				$("#hari").prop('required',true);
 			}
 		});
 	});

@@ -40,7 +40,7 @@
 
             <!--Home Sections-->
 
-            <section id="hello" class="@yield('banner-class') bg-mega"  style="background-image: url(@yield('banner-image'));">
+            <!--<section id="hello" class="@yield('banner-class') bg-mega"  style="background-image: url(@yield('banner-image'));">
                 <div class="overlay"></div>
                 <div class="container">
                     <div class="row">
@@ -49,10 +49,41 @@
                                 @yield('banner-text')
                             </div>
                         </div>
-                    </div><!--End off row-->
-                </div><!--End off container -->
-            </section> <!--End off Home Sections-->
-            <!--Company section-->
+                    </div>
+                </div>
+            </section>
+          -->
+            <section id="hello" class="@yield('banner-class') bg-mega">
+                
+                <div id="slider" class="carousel slide" data-ride="carousel" style="overflow: hidden;">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider" data-slide-to="1"></li>
+                        <li data-target="#slider" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img class="banner-img" src="{{asset('image/banner/5b.jpg')}}" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img class="banner-img" src="{{asset('image/banner/5d.jpg')}}" alt="Second slide">
+                        </div>
+                        <div class="item">
+                          <img class="banner-img" src="{{asset('image/banner/DSC_01041.jpg')}}" alt="Third slide">
+                        </div>
+                    </div>
+
+                    <!-- prev and next carousel button -->
+                    <a href="#slider" class="left carousel-control" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a href="#slider" class="right carousel-control" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </section>
             @yield('content')
             @include('front.layoutFooter')
 
@@ -73,6 +104,7 @@
         <script src="{{asset('front/js/bootsnav.js')}}"></script>
         <script src="{{asset('front/js/plugins.js')}}"></script>
         <script src="{{asset('front/js/main.js')}}"></script>
+        
         @yield('script')
     </body>
 </html>

@@ -1,6 +1,6 @@
 @extends('front.layoutFront')
 @section('banner-image')
-{{asset('image/banner/DSC_01041.jpg')}}
+{{asset('imaπge/banner/DSC_01041.jpg')}}
 @stop
 @section('banner-class')
 home

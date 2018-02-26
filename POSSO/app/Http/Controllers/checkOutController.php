@@ -161,7 +161,7 @@ class checkOutController extends Controller
     	}
         else
         {
-            $insert->image_ref_id = "-";
+            $insert->image_ref_id = 0;
         }
 
         if($request->tipe==1)

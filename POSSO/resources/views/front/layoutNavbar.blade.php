@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                 <li><a href="{{url('/')}}">home</a></li> 
-				<li><a href="aboutus.html">about</a></li> 
+				<li><a href="">about</a></li> 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Product

@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{asset('front/css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/bootsnav.css')}}">
 
-
     <!--For Plugins external css-->
     <!--<link rel="stylesheet" href="front/css/plugins.css" />-->
 
