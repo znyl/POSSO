@@ -16,6 +16,7 @@ class frontViewComposerServiceProvider extends ServiceProvider
         //
         $this->composeNavbarCategory();
         $this->composeCart();
+        $this->composeBanner();
     }
 
     /**
@@ -39,5 +40,12 @@ class frontViewComposerServiceProvider extends ServiceProvider
     private function composeCart()
     {
         view()->composer(['front.layoutNavbar','front.cartIndex','front.formCheckOutOrder','App\Http\Controllers\checkOutController@orderCheckOut'], 'App\Http\Composers\CartComposer');
+    }
+    private function composeBanner()
+    {
+        view()->composer(['front.layoutFront'], function($view){
+            $banner = \App\s_slider_image::where('status','=',1)->get();
+            $view->with(compact('banner'));
+        });
     }
 }

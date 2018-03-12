@@ -23,8 +23,8 @@
 <li class="treeview">
   <a href="#"><i class="fa fa-gear"></i><span>Settings</span><span class="pull-right-container"><i class="fa fa-angle-left"></i></span></a>
   <ul class="treeview-menu">
-    <li><a href=""><i class="fa fa-angle-right"></i><span>User</span></a></li>
-    <li><a href=""><i class="fa fa-angle-right"></i><span>Banner</span></a>
+    <li><a href="{{ url('admin/setting/user/index') }}"><i class="fa fa-angle-right"></i><span>User</span></a></li>
+    <li><a href="{{ url('admin/setting/slider/index')}}"><i class="fa fa-angle-right"></i><span>Banner</span></a>
     <li><a href="{{url('admin/setting/email/index')}}"><i class="fa fa-angle-right"></i><span>Email</span></a></li>
   </ul>
 </li>

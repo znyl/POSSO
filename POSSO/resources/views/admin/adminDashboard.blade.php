@@ -1,4 +1,7 @@
 @extends('admin/admin-layout')
+@section('breadcrumbs')
+<li class="active">Dashboard</li>
+@stop
 @section('dashboard')
 <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -75,16 +78,20 @@ Contact Us
       <td>E-mail</td>
       <td>Status</td>
       <td>Tgl. Masuk</td>
+      <td>Action</td>
     </tr>
   </thead>
   <tbody>
     @foreach($contactus as $index => $value)
     <tr>
       <td>{{ $index+1 }}</td>
-      <td>{{ $value['name'] }}</td>
+      <td><a href="{{url('admin/contactUs/detailed',$value['id'])}}">{{ $value['name'] }}</a></td>
       <td>{{ $value['email'] }}</td>
       <td>{{ $value['status'] }}</td>
       <td>{{ date('d-m-Y H:i:s', strtotime($value['created_at'])) }}</td>
+      <td>
+        <a href=""><button class="btn btn-danger btn-flat">Delete</button></a>
+      </td>
     </tr>
     @endforeach
   </tbody>

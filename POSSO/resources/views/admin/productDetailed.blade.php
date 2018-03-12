@@ -161,6 +161,7 @@
   	</div>
 </div>  
 
+<!--modal add size-->
 <div class="modal fade" id="MasterModalSize" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content">
@@ -206,7 +207,8 @@
     	</div>
   	</div>
 </div>  
-
+<!--modal add size end-->
+<!--modal add warna-->
 <div class="modal fade" id="MasterModalWarna" tabindex="" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content">
@@ -233,7 +235,8 @@
       
     	</div>
   	</div>
-</div>  
+</div> 
+<!--modal add warna end--> 
 @stop
 @section('box-footer')
 <a href="{{url('admin/product/index')}}"><button class="btn btn-flat btn-danger">Kembali</button></a>

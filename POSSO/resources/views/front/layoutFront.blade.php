@@ -57,20 +57,16 @@
                 
                 <div id="slider" class="carousel slide" data-ride="carousel" style="overflow: hidden;">
                     <ol class="carousel-indicators">
-                        <li data-target="#slider" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider" data-slide-to="1"></li>
-                        <li data-target="#slider" data-slide-to="2"></li>
+                        @foreach($banner as $index => $value)
+                        <li data-target="#{{$value['id']}}" data-slide-to="{{$index}}" @if($index==0)class="active"@endif></li>
+                        @endforeach
                     </ol>
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img class="banner-img" src="{{asset('image/banner/5b.jpg')}}" alt="First slide">
+                    @foreach($banner as $index => $value)
+                        <div class="item @if($index==0) active @endif">
+                            <img class="banner-img" src="{{asset($value['file_dir'])}}">
                         </div>
-                        <div class="item">
-                            <img class="banner-img" src="{{asset('image/banner/5d.jpg')}}" alt="Second slide">
-                        </div>
-                        <div class="item">
-                          <img class="banner-img" src="{{asset('image/banner/DSC_01041.jpg')}}" alt="Third slide">
-                        </div>
+                    @endforeach
                     </div>
 
                     <!-- prev and next carousel button -->
