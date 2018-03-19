@@ -17,6 +17,7 @@ Auth::routes();
 Route::post('/test','frontController@test');
 Route::get('/','frontController@index');
 Route::get('/product/category/{id}','frontController@product');
+
 Route::get('/product/detailed/{id}','frontController@productDetailed');
 Route::get('/MUA/profile','frontController@mua');
 Route::get('/contactUs','frontController@contactUs');

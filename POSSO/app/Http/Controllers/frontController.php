@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class frontController extends Controller
 {
     //
-    private $category;
+   
     public function index()
     {
         return view('front.frontHome');
@@ -41,9 +41,10 @@ class frontController extends Controller
             echo "beli bos";
     }
     
-    public function product($id)
+    public function product(Request $request, $id)
     {
-    	$data = product::where('category_id','=',$id)->where('status_product','=',1)->get();
+    	$data = product::where('category_id','=',$id)->where('status_product','=',1)->paginate(8);
+        
     	foreach($data as $index => $value)
     	{
     		$value['main_image'] = file_gambar::find($value['file_gambar_id']);
@@ -57,6 +58,12 @@ class frontController extends Controller
     		else
     			$value['status_diskon']=false;
     	}
+        if($request->ajax()) {
+            return [
+                'data' => view('ajax.productListAjax')->with(compact('data'))->render(),
+                'next_page' => $data->nextPageUrl()
+            ];
+        }
 
     	return view('front.productList',compact('data'));
     }

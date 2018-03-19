@@ -6,8 +6,9 @@
 model-banner
 @stop
 @section('content')
+
 <section class="gallery margin-top-120 bg-white">
-	<div class="container">
+	<div class="container" id="productList" data-next-page="{{ $data->nextPageUrl() }}">
 		@foreach($data as $index => $value)
 		<a href="{{url('/product/detailed',$value['id'])}}">          	
 			<div class="col-md-3 col-xs-6">
@@ -26,4 +27,35 @@ model-banner
 </section>
 <br>
 <br>
+@stop
+@section('script')
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(window).scroll(fetchProduct);
+		function fetchProduct()
+				{
+					var nextPage= $('#productList').data('next-page');
+					if(nextPage !== null)
+					{
+						clearTimeout($.data(this, 'scrollCheck'));
+						$.data(this, 'scrollCheck', setTimeout(function(){
+							var scroll_position_for_load = $(window).height()+ $(window).scrollTop() + 500;
+							if(scroll_position_for_load >= $(document).height())
+							{
+								$.get(nextPage, function(data){
+									$('#productList').append(data.data);
+									$('#productList').data('next-page',data.next_page);
+								})
+							}
+
+						}, 350));
+					}
+				}
+	});
+
+		
+
+		
+	
+</script>
 @stop
