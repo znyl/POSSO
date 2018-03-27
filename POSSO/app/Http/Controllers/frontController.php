@@ -31,7 +31,7 @@ class frontController extends Controller
         $data->status = "Baru";
         $data->save();
         
-        //return redirect(url('/contactUs'));
+        return redirect(url('/contactUs'));
     }
     public function test(Request $request)
     {

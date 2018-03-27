@@ -19,6 +19,10 @@ class sliderController extends Controller
     }
     public function unActivate($id)
     {
+        if(s_slider_image::where('status','=',0)->count()<=1)
+        {
+            return redirect(url('/admin/setting/slider/index'))->with('error','Silahkan aktifkan gambar yang lain terlebih dahulu');
+        }
     	$data = s_slider_image::find($id);
     	$data->status = 0;
     	$data->save();
